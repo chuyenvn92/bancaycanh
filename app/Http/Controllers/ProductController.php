@@ -61,11 +61,14 @@ class ProductController extends Controller
                             'image' => 'required'
                         ]    
         );
-
+        $arr_image = array();
         foreach ($request->image as $image) {
             $image_new_name = time() . $image->getClientOriginalName();
             $image->move('uploads/products', $image_new_name);
+            array_push($arr_image, array('name' => $image_new_name));
         }
+        
+        $image = json_encode($arr_image);
 
         $product = Product::create([
             'product_category_id' => $request->product_category_id,
@@ -137,7 +140,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        if(isset($product->image)){
+        if(!isset($product->image)){
             unlink($product->image);
         }
         

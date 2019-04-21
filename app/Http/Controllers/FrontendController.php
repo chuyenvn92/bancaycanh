@@ -126,7 +126,7 @@ class FrontendController extends Controller
     public function index(){
         $slides = Slide::all();
         $productCategories = ProductCategory::all();
-        $products = Product::paginate(12);
+        $products = Product::paginate(8);
         $colors = Color::all();
         $tags = Tag::all();
 
@@ -149,7 +149,7 @@ class FrontendController extends Controller
 
     public function product(){
         $productCategories = ProductCategory::all();
-        $products = Product::paginate(12);
+        $products = Product::paginate(8);
         $colors = Color::all();
         $tags = Tag::all();
 
@@ -164,7 +164,7 @@ class FrontendController extends Controller
         $relatedProducts = Product::where('product_category_id', $product->product_category->id)->get();
         $sizes = Size::all();
         $colors = Color::all();
-        $comments = CommentProduct::where('product_id', $product->id)->paginate(2);
+        $comments = CommentProduct::where('product_id', $product->id)->orderBy('created_at', 'DESC')->paginate(3);
         $comments_count = CommentProduct::where('product_id', $product->id)->count();
         return view('frontend.product-detail')->with('product', $product)
                                                 ->with('relatedProducts', $relatedProducts)
@@ -175,19 +175,19 @@ class FrontendController extends Controller
     }
 
     public function storeCommentProduct(Request $request, $id){
-        $content = $request->review;
         $product = Product::find($id);
+
         CommentProduct::create([
             'user_id' => Auth::id(),
             'product_id' => $id,
-            'content' => $content,
+            'content' => $request->review,
         ]);
-
-        Session::flash('success', 'Comment successfully!');
-
+        
+        Session::flash('success', 'Comment successfully!');        
+        $comments = CommentProduct::where('product_id', $id)->orderBy('created_at', 'DESC')->paginate(3);
         return redirect()->route('product.detail', ['slug' => $product->slug]);
     }
-
+    
     public function productSearch(Request $request){
         $id = $request->search;
             
@@ -215,12 +215,20 @@ class FrontendController extends Controller
     public function store(Request $request){
         $product_id = $request->product_id;
         $product = Product::find($product_id);
+        $image = json_decode($product->image, True)[0]['name'];
         $size = Size::find($request->size);
         $color = Color::find($request->color);
         $attribute = Attribute::where('product_id', $product_id)->where('size_id', $size->id)->where('color_id', $color->id)->first();
         $qty = $request->qty;
         $price_discount = $product->price - $product->price * $product->discount / 100;
-        Cart::add(['id' => $attribute->id, 'name' => $attribute->product->name, 'qty' => $qty, 'price' => $price_discount, 'options' => [ 'size' => $size->name, 'color' => $color->name, 'discount' => $product->discount, 'price' => $product->price ]]);
+        Cart::add(['id' => $attribute->id, 
+                    'name' => $attribute->product->name, 
+                    'qty' => $qty, 'price' => $price_discount, 
+                    'options' => [ 'size' => $size->name, 
+                                    'image' => $image, 'color' => $color->name, 
+                                    'discount' => $product->discount, 
+                                    'price' => $product->price ]
+                    ]);
         Session::flash('success', 'Add to cart succesfully!');
         return redirect()->back();
     }

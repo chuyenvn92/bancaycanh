@@ -106,8 +106,8 @@ class SlideController extends Controller
             $image_new_name = time() . $image_upload->getClientOriginalName();
             $image_upload->move('uploads/slides', $image_new_name);
             $image = 'uploads/slides/' . $image_new_name;
-            $slide->image = $image;
             unlink($slide->image);
+            $slide->image = $image;
         }
         
         $slide->title = $request->title;

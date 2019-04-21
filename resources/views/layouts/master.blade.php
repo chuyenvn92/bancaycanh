@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>@yield('title')</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/favicon.png')}}"/>
+	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/logo.ico')}}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}">
 <!--===============================================================================================-->
@@ -43,8 +43,6 @@
 	<!-- Header -->
 	@include('layouts.header')
 
-	<!-- Cart -->
-	@include('layouts.cart')
 	
 	@yield('content')		
 
@@ -57,9 +55,6 @@
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
-	<!-- Modal1 -->
-	@include('layouts.modal')
 
 <!--===============================================================================================-->	
 	<script src="{{ asset('frontend/vendor/jquery/jquery-3.2.1.min.js') }}"></script>

@@ -43,6 +43,12 @@ class LoginController extends Controller
         return view('auth.login');
     }
     public function login(Request $request){
+        $this->validate($request,
+                        [
+                            'email' => ['required', 'string', 'email', 'max:255'],
+                            'password' => ['required', 'string', 'min:6'],
+                        ]
+                        );
         $email = $request->email;
         $password = $request->password;
 
@@ -51,11 +57,11 @@ class LoginController extends Controller
         }
                 
         Session::flash('error', 'E-mail hoặc mật khẩu không đúng!');
-        return redirect()->route('login');
+        return redirect()->route('get.login');
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('get.login');
     }
 }

@@ -1,9 +1,12 @@
 @extends('layouts.master')
 
+@section('title')
+    Login
+@endsection
 @section('content')
-
-<form class="bg0 p-t-75 p-b-85" action="{{ route('user.login') }}" method="POST">
+<form class="bg0 p-t-135 p-b-140" action="{{ route('user.login') }}" method="POST">
     @csrf
+    
     <div class="container">
         <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

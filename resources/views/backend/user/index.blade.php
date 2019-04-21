@@ -13,7 +13,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Date of birth</th>
-                        <th>Sex</th>
+                        <th>Gender</th>
                         <th>Number phone</th>
                         <th>Address</th>
                         <th>Is_Admin</th>
@@ -37,11 +37,18 @@
                             <th>{{ $user->number_phone }}</th>
                             <th>{{ $user->address }}</th>
                             <th>
-                                @if ($user->is_admin == 1)
-                                    {{ 'Admin' }}
-                                @else
-                                    {{ 'Member' }}
-                                @endif
+                                @switch($user->is_admin)
+                                    @case(0)
+                                        {{ 'Member' }}
+                                        @break
+                                    @case(1)
+                                        {{ 'Admin' }}
+                                        @break
+                                    @case(2)
+                                        {{ 'Employee' }}
+                                        @break
+                                    @default   
+                                @endswitch
                             </th>
                             <th>
                                 <a class="btn btn-outline-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>

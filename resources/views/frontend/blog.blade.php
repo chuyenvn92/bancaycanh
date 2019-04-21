@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
+@section('title')
+	Blog
+@endsection
+
 @section('content')
-	
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('frontend/images/bg-02.jpg') }});">
 		<h2 class="ltext-105 cl0 txt-center">
@@ -20,7 +23,7 @@
 						<!-- item blog -->
 							<div class="p-b-63">
 								<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="hov-img0 how-pos5-parent">
-									<img src="{{ asset('frontend/images/blog-04.jpg') }}" alt="IMG-BLOG">
+									<img src="{{ asset($post->image) }}" alt="IMG-BLOG">
 
 									<div class="flex-col-c-m size-123 bg9 how-pos5">
 										<span class="ltext-107 cl2 txt-center">

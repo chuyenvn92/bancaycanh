@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	Blog detail
+@endsection
+
 @section('content')
 	
 	<!-- breadcrumb -->
@@ -30,7 +34,7 @@
 					<div class="p-r-45 p-r-0-lg">
 						<!--  -->
 						<div class="wrap-pic-w how-pos5-parent">
-							<img src="{{ asset('frontend/images/blog-04.jpg') }}" alt="IMG-BLOG">
+							<img src="{{ asset($post->image) }}" alt="IMG-BLOG">
 
 							<div class="flex-col-c-m size-123 bg9 how-pos5">
 								<span class="ltext-107 cl2 txt-center">
@@ -98,15 +102,11 @@
 								Leave a Comment
 							</h5>
 
-							<p class="stext-107 cl6 p-b-40">
-								Your email address will not be published. Required fields are marked *
-							</p>
-
 							<div id="comment_post">
 								@foreach ($comments as $comment)
 									<div class="flex-w flex-t p-b-68">
 										<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-											<img src="{{ asset('frontend/images/avatar-01.jpg') }}" alt="AVATAR">
+											<img src="{{ asset($comment->user->image) }}" alt="AVATAR">
 										</div>
 										<div class="size-207">
 											<div class="flex-w flex-sb-m p-b-17">
@@ -190,10 +190,4 @@
 		</div>
 	</section>	
 
-@endsection
-
-@section('style')
-	<script>
-
-	</script>	
 @endsection

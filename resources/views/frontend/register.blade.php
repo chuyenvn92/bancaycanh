@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+
+@section('title')
+    Register
+@endsection
+
 @section('content')
 <form class="bg0 p-t-75 p-b-85" action="{{ route('register.store') }}" method="POST">
     @csrf

@@ -1,9 +1,11 @@
 @extends('layouts.master')
 
+@section('title')
+	Shoping cart
+@endsection
+
 @section('content')
 
-	<!-- Shoping Cart -->
-	
 	<form class="bg0 p-t-75 p-b-85" action="{{ route('order.update') }}" method="POST">
 		@csrf
 		<div class="container">
@@ -26,7 +28,7 @@
 											<td class="column-1">
 												<a href="{{ route('order.destroy', ['id' => $cart->rowId]) }}">
 													<div class="how-itemcart1">
-														<img src="{{ asset('frontend/images/item-cart-04.jpg') }}" alt="">
+														<img src="{{ asset('uploads/products/'. $cart->options->image) }}" alt="">
 													</div>
 												</a>
 											</td>

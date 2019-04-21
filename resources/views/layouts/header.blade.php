@@ -5,7 +5,7 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Free shipping for standard order over 1000k
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
@@ -41,7 +41,7 @@
                 
                 <!-- Logo desktop -->		
                 <a href="{{ route('index') }}" class="logo">
-                    <img src="{{ asset('frontend/images/icons/logo-01.png') }}" alt="IMG-LOGO">
+                    <img src="{{ asset('frontend/images/icons/logo.png') }}" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
@@ -88,7 +88,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->		
         <div class="logo-mobile">
-            <a href="index.html"><img src="{{ asset('frontend/images/icons/logo-01.png') }}" alt="IMG-LOGO"></a>
+            <a href="index.html"><img src="{{ asset('frontend/images/icons/logo.png') }}" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
@@ -116,7 +116,7 @@
         <ul class="topbar-mobile">
             <li>
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Free shipping for standard order over 1000k
                 </div>
             </li>
 

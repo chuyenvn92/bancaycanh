@@ -47,9 +47,13 @@ class UserController extends Controller
                         'number_phone' => ['required'],
                         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                         'password' => ['required', 'string', 'min:6', 'confirmed'],
+                        'image' => 'required',
                     ]
                     );
-
+        $image_upload = $request->image;
+        $image_new_name = time() . $image_upload->getClientOriginalName();
+        $image_upload->move('uploads/users', $image_new_name);
+        $image = 'uploads/users/' . $image_new_name;
         User::create([
             'name' => $request->name,
             'dob' => $request->dob,
@@ -58,6 +62,7 @@ class UserController extends Controller
             'number_phone' => $request->number_phone,
             'email' => $request->email,
             'password' => Hash::make('secret'),
+            'image' => $image,
         ]);
 
         Session::flash('success','Add user successfully!');
@@ -110,6 +115,16 @@ class UserController extends Controller
         );
 
         $user = User::find($id);
+        if ($request->hasFile('image')){
+            $image_upload = $request->image;
+            $image_new_name = time() . $image_upload->getClientOriginalName();
+            $image_upload->move('uploads/users', $image_new_name);
+            $image = 'uploads/users/' . $image_new_name;
+            if (!empty($user->image)) {
+                unlink($user->image);
+            }
+            $user->image = $image;
+        }
         
         $user->name = $request->name;
         $user->dob = $request->dob;
@@ -117,8 +132,8 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->number_phone = $request->number_phone;
         $user->email = $request->email;
-        $user->password = $request->password;
-        
+        $user->password = Hash::make($request->password);
+        $user->save();
 
         Session::flash('success','Edit user successfully!');
 

@@ -102,6 +102,7 @@
                     <div class="col-md-6">
                         <select id="is_admin" class="form-control{{ $errors->has('is_admin') ? ' is-invalid' : '' }}" name="is_admin" value="{{ old('is_admin') }}" required>
                             <option value="0">Member</option>
+                            <option value="2">Employee</option>
                             <option value="1">Manager</option>
                         </select>
                         @if ($errors->has('is_admin'))
@@ -134,10 +135,18 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="image" type="file" class="form-control" name="image" required>
+                    </div>
+                </div>
+
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
+                            {{ __('Add new') }}
                         </button>
                     </div>
                 </div>

@@ -19,14 +19,14 @@ class LoginMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if($user->is_admin == 1)
+            if($user->is_admin > 0)
                 return $next($request);
             else {
                 Session::flash('warning', 'Bạn không được phép truy cập!');
-                return redirect()->route('login');
+                return redirect()->route('get.login');
             }
         }
 
-        return redirect()->route('login');
+        return redirect()->route('get.login');
     }
 }

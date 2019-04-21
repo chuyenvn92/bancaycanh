@@ -15,8 +15,8 @@ class CreateCommentProductsTable extends Migration
     {
         Schema::create('comment_products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('product_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('product_id');
             $table->string('content');
             $table->timestamps();
         });

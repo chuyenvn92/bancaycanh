@@ -126,8 +126,8 @@ class PostController extends Controller
             $image_new_name = time() . $image_upload->getClientOriginalName();
             $image_upload->move('uploads/posts', $image_new_name);
             $image = 'uploads/posts/' . $image_new_name;
-            $post->image = $image;
             unlink($post->image);
+            $post->image = $image;
         }
 
         $post->post_category_id = $request->post_category_id;

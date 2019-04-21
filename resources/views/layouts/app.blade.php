@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>{{ 'Torano' }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/logo.ico')}}"/>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('dashboad.index') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('frontend/images/icons/logo.png') }}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -46,6 +46,9 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @else
+                            <li class="nav-item">
+
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -147,5 +150,23 @@
         @endif
     </script>
     @yield('script')
+    {{-- <script>
+        $(document).ready(function(){
+    $('#myTable').DataTable({
+       "language": {
+         "search": "Tìm kiếm:",
+         "paginate": {
+           "sFirst": "Trang đầu",
+           "sLast": "Trang cuối",
+           "sNext": "Trang sau" ,
+           "sPrevious": "Trang trước",          
+         },
+         "info": "Hiển thị từ _START_ tới _END_ của _TOTAL_ bản ghi",
+         "lengthMenu":     "Hiện _MENU_ bản ghi",         
+       },
+       "bInfo" : false,//hiển thị số bản ghi
+    });
+});	
+    </script> --}}
 </body>
 </html>

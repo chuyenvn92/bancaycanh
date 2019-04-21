@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
+@section('title')
+	Product detail
+@endsection
+
 @section('content')
-	
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
@@ -103,27 +106,6 @@
 								</div>	
 							</div>
 						</form>
-
-						<!--  -->
-						{{-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-							<div class="flex-m bor9 p-r-10 m-r-11">
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-									<i class="zmdi zmdi-favorite"></i>
-								</a>
-							</div>
-
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-								<i class="fa fa-facebook"></i>
-							</a>
-
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-								<i class="fa fa-twitter"></i>
-							</a>
-
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-								<i class="fa fa-google-plus"></i>
-							</a>
-						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -138,11 +120,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
-						</li>
-
-						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews {{ $comments_count }}</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{ $comments_count }})</a>
 						</li>
 					</ul>
 
@@ -157,92 +135,34 @@
 							</div>
 						</div>
 
-						<!-- - -->
-						<div class="tab-pane fade" id="information" role="tabpanel">
-							<div class="row">
-								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<ul class="p-lr-28 p-lr-15-sm">
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Weight
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												0.79 kg
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Dimensions
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Materials
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												60% cotton
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Color
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
-											</span>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<!-- - -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
 										<!-- Review -->
-										@foreach ($comments as $comment)
-											<div class="flex-w flex-t p-b-68">
-												<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-													<img src="{{ asset('frontend/images/avatar-01.jpg') }}" alt="AVATAR">
-												</div>
-												<div class="size-207">
-													<div class="flex-w flex-sb-m p-b-17">
-														<span class="mtext-107 cl2 p-r-20">
-															{{ $comment->user->name }}
-														</span>
-														<small>{{ $comment->created_at->diffForHumans() }}</small>
+										<div id="paginate">
+											@foreach ($comments as $comment)
+												<div class="flex-w flex-t p-b-68">
+													<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+														<img src="{{ asset($comment->user->image) }}" alt="AVATAR">
 													</div>
-	
-													<p class="stext-102 cl6">
-														{{ $comment->content }}
-													</p>
+													<div class="size-207">
+														<div class="flex-w flex-sb-m p-b-17">
+															<span class="mtext-107 cl2 p-r-20">
+																{{ $comment->user->name }}
+															</span>
+															<small>{{ $comment->created_at->diffForHumans() }}</small>
+														</div>
+		
+														<p class="stext-102 cl6">
+															{{ $comment->content }}
+														</p>
+													</div>
 												</div>
-											</div>
-										@endforeach
-
-										{{ $comments->links('vendor.pagination.paginate') }}
+											@endforeach
+	
+											{{ $comments->links('vendor.pagination.paginate') }}
+										</div>
 										
 
 										<!-- Add review -->
@@ -253,10 +173,6 @@
 													Add a review
 												</h5>
 
-												<p class="stext-102 cl6">
-													Your email address will not be published. Required fields are marked *
-												</p>
-
 												<div class="row p-b-25">
 													<div class="col-12 p-b-5">
 														<label class="stext-102 cl3" for="review">Your review</label>
@@ -264,7 +180,7 @@
 													</div>
 												</div>
 
-												<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+												<button id="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
 													Submit
 												</button>
 											</form>
@@ -278,15 +194,6 @@
 			</div>
 		</div>
 
-		{{-- <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
-			</span>
-
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
-			</span>
-		</div> --}}
 	</section>
 
 
@@ -307,16 +214,16 @@
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0">
-									<img src="{{ asset('frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT">
+									<img src="{{ asset('uploads/products/'.json_decode($relatedProduct->image, True)[0]['name']) }}" alt="IMG-PRODUCT">
 	
-									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+									<a href="{{ route('product.detail', ['slug' => $relatedProduct->slug]) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 										View detail
 									</a>
 								</div>
 	
 								<div class="block2-txt flex-w flex-t p-t-14">
 									<div class="block2-txt-child1 flex-col-l ">
-										<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<a href="{{ route('product.detail', ['slug' => $relatedProduct->slug]) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 											{{ $relatedProduct->name }}
 										</a>
 	
@@ -335,3 +242,23 @@
 	</section>
 @endsection
 
+{{-- @section('script')
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#submit').click(function (e) { 
+				e.preventDefault();
+
+				$.ajax({
+					type: "post",
+					url: "{{ route('product.store') }}",
+					data: $('form').serialize(),
+					success: function (response) {
+						$('#reviews').html(response);
+					},
+				});
+			});
+		});
+	</script>
+
+@endsection --}}

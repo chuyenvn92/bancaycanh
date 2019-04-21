@@ -13,11 +13,9 @@
 
 
 
-Route::get('/admin', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('/admin', 'Auth\LoginController@showLoginForm')->name('get.login');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
-// Route::get('/admin', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resources([
@@ -55,6 +53,8 @@ Route::get('/contact', 'FrontendController@contact')->name('contact');
 Route::get('/product', 'FrontendController@product')->name('product');
 Route::get('/product-detail/{slug}', 'FrontendController@productDetail')->name('product.detail');
 Route::post('/product-detail/store/{id}', 'FrontendController@storeCommentProduct')->name('product.store')->middleware('user');
+Route::get('/product-detail/paginate', 'FrontendController@paginateProduct')->name('paginate.product');
+
 
 Route::get('/order', 'FrontendController@order')->name('order');
 Route::post('/order/store', 'FrontendController@store')->name('order.store');

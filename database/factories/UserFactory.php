@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-
+use Illuminate\Support\Facades\Hash;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -22,8 +22,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'number_phone' => $faker->tollFreePhoneNumber,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'is_admin' => rand(0,1),
+        'password' => Hash::make('123456'),
+        'is_admin' => rand(0, 2),
         'remember_token' => str_random(10),
     ];
 });
