@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
 @section('title')
-	Shoping cart
+	Giỏ hàng
 @endsection
 
 @section('content')
-
 	<form class="bg0 p-t-75 p-b-85" action="{{ route('order.update') }}" method="POST">
 		@csrf
 		<div class="container">
@@ -16,12 +15,12 @@
 							<table class="table-shopping-cart">
 								@if (Cart::count())
 									<tr class="table_head">
-										<th class="column-1">Product</th>
+										<th class="column-1">Sản phẩm</th>
 										<th class="column-2"></th>
-										<th class="">Discount</th>
-										<th class="column-3">Price</th>
-										<th class="column-4">Quantity</th>
-										<th class="column-5">Total</th>
+										<th class="column-3">Giảm giá</th>
+										<th class="column-3">Giá</th>
+										<th class="column-4">Số lượng</th>
+										<th class="column-5">Tổng tiền</th>
 									</tr>
 									@foreach ($carts as $cart)
 										<tr class="table_row">
@@ -46,7 +45,7 @@
 														<i class="fs-16 zmdi zmdi-minus"></i>
 													</div>
 													
-													<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty[]" value="{{ $cart->qty }}">
+													<input class="mtext-104 cl3 txt-center num-product" min="1" type="number" name="qty[]" value="{{ $cart->qty }}">
 
 													<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 														<i class="fs-16 zmdi zmdi-plus"></i>

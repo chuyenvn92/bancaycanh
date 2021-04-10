@@ -48,8 +48,27 @@ class UserController extends Controller
                         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                         'password' => ['required', 'string', 'min:6', 'confirmed'],
                         'image' => 'required',
+                    ],
+                    [
+                        'name.required' => 'Họ tên không được để trống.',
+                        'name.string' => 'Họ tên phải là chữ cái.',
+                        'name.max' => 'Họ tên không được quá 255 kí tự.',
+                        'dob.required' => 'Ngày sinh không được để trống.',
+                        'dob.date' => 'Ngày sinh phải và ngày thánh.',
+                        'sex' => 'Địa chỉ không được để trống',
+                        'address.required' => 'Địa chỉ không được để trống',
+                        'address.string' => 'Địa chỉ phải là ký tự',
+                        'address.max' => 'Địa chỉ không được quá 255 ký tự',
+                        'number_phone.required' => 'Số điện thoại không được để trống',
+                        'email.required' => 'Địa chỉ email không được để trống.',
+                        'email.string' => 'Địa chỉ email phải là ký tự.',
+                        'email.email' => 'Email không đúng định dạng.',
+                        'email.max' => 'Địa chỉ email không được quá 255 ký tự.',
+                        'password.required' => 'Mật khẩu không được để trống.',
+                        'password.min' => 'Mật khẩu ít nhất phải 6 kí tự.',
+                        'password.confirmed' => 'Mật khẩu nhập lại không khớp.'
                     ]
-                    );
+        );
         $image_upload = $request->image;
         $image_new_name = time() . $image_upload->getClientOriginalName();
         $image_upload->move('uploads/users', $image_new_name);
@@ -61,11 +80,11 @@ class UserController extends Controller
             'address' => $request->address,
             'number_phone' => $request->number_phone,
             'email' => $request->email,
-            'password' => Hash::make('secret'),
+            'password' => Hash::make($request->password),
             'image' => $image,
         ]);
 
-        Session::flash('success','Add user successfully!');
+        Session::flash('success','Thêm thành công!');
 
         return redirect()->route('users.create');
     }
@@ -103,15 +122,34 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,
-        [
-            'name' => ['required', 'string', 'max:255'],
-            'dob' => ['required', 'date'],
-            'sex' => ['required'],
-            'address' => ['required','string', 'max:255'],
-            'number_phone' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]
+                        [
+                            'name' => ['required', 'string', 'max:255'],
+                            'dob' => ['required', 'date'],
+                            'sex' => ['required'],
+                            'address' => ['required','string', 'max:255'],
+                            'number_phone' => ['required'],
+                            'email' => ['required', 'string', 'email', 'max:255'],
+                            'password' => ['required', 'string', 'min:6', 'confirmed'],
+                        ],
+                        [
+                            'name.required' => 'Họ tên không được để trống.',
+                            'name.string' => 'Họ tên phải là chữ cái.',
+                            'name.max' => 'Họ tên không được quá 255 kí tự.',
+                            'dob.required' => 'Ngày sinh không được để trống.',
+                            'dob.date' => 'Ngày sinh phải và ngày thánh.',
+                            'sex' => 'Địa chỉ không được để trống',
+                            'address.required' => 'Địa chỉ không được để trống',
+                            'address.string' => 'Địa chỉ phải là ký tự',
+                            'address.max' => 'Địa chỉ không được quá 255 ký tự',
+                            'number_phone.required' => 'Số điện thoại không được để trống',
+                            'email.required' => 'Địa chỉ email không được để trống.',
+                            'email.string' => 'Địa chỉ email phải là ký tự.',
+                            'email.email' => 'Email không đúng định dạng.',
+                            'email.max' => 'Địa chỉ email không được quá 255 ký tự.',
+                            'password.required' => 'Mật khẩu không được để trống.',
+                            'password.min' => 'Mật khẩu ít nhất phải 6 kí tự.',
+                            'password.confirmed' => 'Mật khẩu nhập lại không khớp.'
+                        ]
         );
 
         $user = User::find($id);
@@ -124,6 +162,8 @@ class UserController extends Controller
                 unlink($user->image);
             }
             $user->image = $image;
+        }else{
+            $user->image = 'uploads/users/user-default';
         }
         
         $user->name = $request->name;
@@ -132,10 +172,11 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->number_phone = $request->number_phone;
         $user->email = $request->email;
+        $user->is_admin = $request->is_admin;
         $user->password = Hash::make($request->password);
         $user->save();
 
-        Session::flash('success','Edit user successfully!');
+        Session::flash('success','Sửa thành công!');
 
         return redirect()->route('users.edit',['user' => $user]);
     }
@@ -149,8 +190,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-
-        Session::flash('success', 'Destroy user successfully!');
+		$user->delete();
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('users.index');
     }

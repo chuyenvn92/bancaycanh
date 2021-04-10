@@ -3,22 +3,22 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Users</div>
+        <div class="card-header">Danh sách người dùng</div>
     
         <div class="card-body">
-            <a style="margin-bottom:20px;" class="btn btn-primary" href="{{ route('users.create') }}"><span class="fa fa-plus"></span>&nbsp;&nbsp;Add user</a>
+            <a style="margin-bottom:20px;" class="btn btn-primary" href="{{ route('users.create') }}"><span class="fa fa-plus"></span>&nbsp;&nbsp;Thêm người dùng</a>
             <table id="myTable" class="table table-border table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Date of birth</th>
-                        <th>Gender</th>
-                        <th>Number phone</th>
-                        <th>Address</th>
-                        <th>Is_Admin</th>
-                        <th>Edit</th>
-                        <th>Destroy</th>
+                        <th>Họ tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Giới tính</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Quyền</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,9 +29,9 @@
                             <th>{{ $user->dob }}</th>
                             <th>
                                 @if ($user->sex == 1)
-                                    {{ 'Male' }}
+                                    {{ 'Nam' }}
                                 @else
-                                    {{ 'Female' }}
+                                    {{ 'Nữ' }}
                                 @endif
                             </th>
                             <th>{{ $user->number_phone }}</th>
@@ -39,26 +39,26 @@
                             <th>
                                 @switch($user->is_admin)
                                     @case(0)
-                                        {{ 'Member' }}
+                                        {{ 'Khách hàng' }}
                                         @break
                                     @case(1)
                                         {{ 'Admin' }}
                                         @break
                                     @case(2)
-                                        {{ 'Employee' }}
+                                        {{ 'Nhân viên' }}
                                         @break
                                     @default   
                                 @endswitch
                             </th>
                             <th>
-                                <a class="btn btn-outline-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>
+                                <a class="btn btn-outline-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">Sửa</a>
                             </th>
                             <th>
                                 <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="btn btn-outline-danger" type="submit">Destroy</button>
+                                    <button class="btn btn-outline-danger" type="submit">Xóa</button>
                                 </form>
                             </th>
                         </tr>
@@ -76,11 +76,24 @@
     
 @section('script')
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-    <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
-    </script>
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+        "language": {
+            "search": "Tìm kiếm:",
+            "paginate": {
+            "sFirst": "Trang đầu",
+            "sLast": "Trang cuối",
+            "sNext": "Trang sau" ,
+            "sPrevious": "Trang trước",          
+            },
+            "info": "Hiển thị từ _START_ tới _END_ của _TOTAL_ bản ghi",
+            "lengthMenu":     "Hiện _MENU_ bản ghi",         
+        },
+        "bInfo" : false,//hiển thị số bản ghi
+        });
+    });	
+</script>
 @endsection
 
 

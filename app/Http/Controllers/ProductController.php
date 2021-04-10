@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductCategory;
 use App\Tag;
-use App\Color;
-use App\Size;
 use App\Attribute;
 use App\ProductTag;
 use Session;
@@ -34,12 +32,8 @@ class ProductController extends Controller
     {
         $productCategories = ProductCategory::all();
         $tags = Tag::all();
-        $sizes = Size::all();
-        $colors = Color::all();
         return view('backend.product.create')->with('productCategories', $productCategories)
-                                            ->with('tags', $tags)
-                                            ->with('colors', $colors)
-                                            ->with('sizes', $sizes);
+                                            ->with('tags', $tags);
     }
 
     /**
@@ -58,8 +52,19 @@ class ProductController extends Controller
                             'import_price' => 'required',
                             'price' => 'required',
                             'discount' => 'required',
+                            'qty' => 'required',
                             'image' => 'required'
-                        ]    
+                        ],
+                        [
+                            'product_category_id.required' => 'Hãy chọn danh mục sản phẩm',
+                            'name.required' => 'Tên sản phẩm không được để trống.',
+                            'description.required' => 'Mô tả không được để trống.',
+                            'import_price.required' => 'Giá nhập không được để trống.',
+                            'price.required' => 'Giá bán không được để trống',
+                            'discount.required' => 'Giảm giá không được để trống',
+                            'qty.required' => 'Số lượng không được để trống',
+                            'image.required' => 'Hãy chọn hình ảnh cho sản phẩm.'
+                        ]
         );
         $arr_image = array();
         foreach ($request->image as $image) {
@@ -78,23 +83,15 @@ class ProductController extends Controller
             'import_price' => $request->import_price,
             'price' => $request->price,
             'discount' => $request->discount,
+            'qty' => $request->qty,
             'image' => $image
         ]);
 
         $product->tags()->attach($request->tags);
 
-        foreach ($request->sizes as $key => $size) {
-            Attribute::create([
-                'product_id' => $product->id,
-                'size_id' => $size,
-                'color_id' => $request->colors[$key],
-                'qty' => $request->qtys[$key]
-            ]);
-        }
+        Session::flash('success', 'Thêm thành công!');
 
-        Session::flash('success', 'Add successfully!');
-
-        return redirect()->route('products.create');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -152,7 +149,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        Session::flash('success','Destroy successfully!');
+        Session::flash('success','Xóa thành công!');
 
         return redirect()->route('products.index');
     }

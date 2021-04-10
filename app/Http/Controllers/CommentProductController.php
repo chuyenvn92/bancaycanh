@@ -85,7 +85,7 @@ class CommentProductController extends Controller
         $commentproduct = CommentProduct::find($id);
         $commentproduct->delete();
 
-        Session::flash('success', 'Destroy successfully!');
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('commentproducts.index');
     }

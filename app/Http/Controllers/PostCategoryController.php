@@ -40,6 +40,9 @@ class PostCategoryController extends Controller
         $this->validate($request,
                         [
                            'name' => 'required' 
+                        ],
+                        [
+                            'name.required' => 'Tên danh mục không được để trống.'
                         ]
         );
 
@@ -48,7 +51,7 @@ class PostCategoryController extends Controller
             'slug' => str_slug($request->name)
         ]);
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('postcategories.create');
     }
@@ -88,6 +91,9 @@ class PostCategoryController extends Controller
         $this->validate($request,
                         [
                         'name' => 'required' 
+                        ],
+                        [
+                        'name.required' => 'Tên danh mục không được để trống.'
                         ]
         );
 
@@ -95,7 +101,7 @@ class PostCategoryController extends Controller
         $postCategories->name = $request->name;
         $postCategories->slug = str_slug($request->name);
 
-        Session::flash('success', 'Edit successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('postcategories.edit', ['postCategories' => $postCategories]);
     }
@@ -111,7 +117,7 @@ class PostCategoryController extends Controller
         $postCategories = PostCategory::find($id);
         $postCategories->delete();
 
-        Session::flash('success', 'Destroy successfully!');
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('postcategories.index');
     }

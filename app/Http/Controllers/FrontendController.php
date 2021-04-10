@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Notifications\VerifyOrder;
 use App\User;
 use App\Slide;
 use App\ProductCategory;
@@ -11,8 +12,6 @@ use App\Product;
 use App\Attribute;
 use App\Contact;
 use App\About;
-use App\Color;
-use App\Size;
 use App\Tag;
 use App\PostCategory;
 use App\Post;
@@ -48,8 +47,27 @@ class FrontendController extends Controller
                         'number_phone' => ['required'],
                         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                         'password' => ['required', 'string', 'min:6', 'confirmed'],
+                    ],
+                    [
+                        'name.required' => 'Họ tên không được để trống.',
+                        'name.string' => 'Họ tên phải là chữ cái.',
+                        'name.max' => 'Họ tên không được quá 255 kí tự.',
+                        'dob.required' => 'Ngày sinh không được để trống.',
+                        'dob.date' => 'Ngày sinh phải và ngày thánh.',
+                        'sex' => 'Địa chỉ không được để trống',
+                        'address.required' => 'Địa chỉ không được để trống',
+                        'address.string' => 'Địa chỉ phải là ký tự',
+                        'address.max' => 'Địa chỉ không được quá 255 ký tự',
+                        'number_phone.required' => 'Số điện thoại không được để trống',
+                        'email.required' => 'Địa chỉ email không được để trống.',
+                        'email.string' => 'Địa chỉ email phải là ký tự.',
+                        'email.email' => 'Email không đúng định dạng.',
+                        'email.max' => 'Địa chỉ email không được quá 255 ký tự.',
+                        'password.required' => 'Mật khẩu không được để trống.',
+                        'password.min' => 'Mật khẩu ít nhất phải 6 kí tự.',
+                        'password.confirmed' => 'Mật khẩu nhập lại không khớp.'
                     ]
-                    );
+        );
 
         User::create([
             'name' => $request->name,
@@ -59,9 +77,10 @@ class FrontendController extends Controller
             'number_phone' => $request->number_phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'image' => 'uploads/users/user-default',
         ]);
             
-        Session::flash('success','Create new account successfully!');
+        Session::flash('success','Đăng ký thành công!');
 
         return redirect()->route('user.login');
     }
@@ -72,9 +91,25 @@ class FrontendController extends Controller
 
 
     public function login(Request $request){
+        $this->validate($request,
+                        [
+                            'email' => ['required', 'string', 'email', 'max:255'],
+                            'password' => ['required', 'string', 'min:6'],
+                        ],
+                        [
+                            'email.required' => 'Email không được để trống',
+                            'email.string' => 'Email phải là ký tự',
+                            'email.email' => 'Email không đúng định dạng',
+                            'email.max' => 'Email không được quá 255 ký tự',
+                            'password.required' => 'Password không được bỏ trống',
+                            'password.string' => 'Password phải là ký tự',
+                            'password.min' => 'Password phải từ 6 ký tự',
+                        ]
+        );
+        
         $email = $request->email;
         $password = $request->password;
-
+        
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             return redirect()->route('index');
         }
@@ -91,15 +126,34 @@ class FrontendController extends Controller
 
     public function profile(Request $request, $id){
         $this->validate($request,
-        [
-            'name' => ['required', 'string', 'max:255'],
-            'dob' => ['required', 'date'],
-            'sex' => ['required'],
-            'address' => ['required','string', 'max:255'],
-            'number_phone' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]
+                        [
+                            'name' => ['required', 'string', 'max:255'],
+                            'dob' => ['required', 'date'],
+                            'sex' => ['required'],
+                            'address' => ['required','string', 'max:255'],
+                            'number_phone' => ['required'],
+                            'email' => ['required', 'string', 'email', 'max:255'],
+                            'password' => ['required', 'string', 'min:6', 'confirmed'],
+                        ],
+                        [
+                            'name.required' => 'Họ tên không được để trống.',
+                            'name.string' => 'Họ tên phải là chữ cái.',
+                            'name.max' => 'Họ tên không được quá 255 kí tự.',
+                            'dob.required' => 'Ngày sinh không được để trống.',
+                            'dob.date' => 'Ngày sinh phải và ngày thánh.',
+                            'sex' => 'Địa chỉ không được để trống',
+                            'address.required' => 'Địa chỉ không được để trống',
+                            'address.string' => 'Địa chỉ phải là ký tự',
+                            'address.max' => 'Địa chỉ không được quá 255 ký tự',
+                            'number_phone.required' => 'Số điện thoại không được để trống',
+                            'email.required' => 'Địa chỉ email không được để trống.',
+                            'email.string' => 'Địa chỉ email phải là ký tự.',
+                            'email.email' => 'Email không đúng định dạng.',
+                            'email.max' => 'Địa chỉ email không được quá 255 ký tự.',
+                            'password.required' => 'Mật khẩu không được để trống.',
+                            'password.min' => 'Mật khẩu ít nhất phải 6 kí tự.',
+                            'password.confirmed' => 'Mật khẩu nhập lại không khớp.'
+                        ]
         );
 
         $user = User::find($id);
@@ -113,7 +167,7 @@ class FrontendController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        Session::flash('success','Update profile successfully!');
+        Session::flash('success','Cập nhật thông tin thành công!');
 
         return redirect()->route('user.profile',['user' => $user]);
     }
@@ -127,13 +181,11 @@ class FrontendController extends Controller
         $slides = Slide::all();
         $productCategories = ProductCategory::all();
         $products = Product::paginate(8);
-        $colors = Color::all();
         $tags = Tag::all();
 
         return view('frontend.index')->with('slides', $slides)
                                     ->with('productCategories', $productCategories)
                                     ->with('products', $products)
-                                    ->with('colors', $colors)
                                     ->with('tags', $tags);
     }
 
@@ -150,26 +202,20 @@ class FrontendController extends Controller
     public function product(){
         $productCategories = ProductCategory::all();
         $products = Product::paginate(8);
-        $colors = Color::all();
         $tags = Tag::all();
 
         return view('frontend.product')->with('productCategories', $productCategories)
                                         ->with('products', $products)
-                                        ->with('colors', $colors)
                                         ->with('tags', $tags);
     }
 
     public function productDetail($slug){
         $product = Product::where('slug', $slug)->first();
         $relatedProducts = Product::where('product_category_id', $product->product_category->id)->get();
-        $sizes = Size::all();
-        $colors = Color::all();
         $comments = CommentProduct::where('product_id', $product->id)->orderBy('created_at', 'DESC')->paginate(3);
         $comments_count = CommentProduct::where('product_id', $product->id)->count();
         return view('frontend.product-detail')->with('product', $product)
                                                 ->with('relatedProducts', $relatedProducts)
-                                                ->with('sizes', $sizes)
-                                                ->with('colors', $colors)
                                                 ->with('comments', $comments)
                                                 ->with('comments_count', $comments_count);
     }
@@ -183,7 +229,7 @@ class FrontendController extends Controller
             'content' => $request->review,
         ]);
         
-        Session::flash('success', 'Comment successfully!');        
+        Session::flash('success', 'Bình luận thành công!');        
         $comments = CommentProduct::where('product_id', $id)->orderBy('created_at', 'DESC')->paginate(3);
         return redirect()->route('product.detail', ['slug' => $product->slug]);
     }
@@ -197,12 +243,10 @@ class FrontendController extends Controller
                             ->orWhere('price', 'like', '%'. $id . '%')
                             ->orWhere('discount', 'like', '%'. $id . '%')->paginate(12);
         $productCategories = ProductCategory::all();
-        $colors = Color::all();
         $tags = Tag::all();
 
         return view('frontend.product')->with('productCategories', $productCategories)
                                         ->with('products', $products)
-                                        ->with('colors', $colors)
                                         ->with('tags', $tags);
     }
 
@@ -216,38 +260,41 @@ class FrontendController extends Controller
         $product_id = $request->product_id;
         $product = Product::find($product_id);
         $image = json_decode($product->image, True)[0]['name'];
-        $size = Size::find($request->size);
-        $color = Color::find($request->color);
-        $attribute = Attribute::where('product_id', $product_id)->where('size_id', $size->id)->where('color_id', $color->id)->first();
+        // $attribute = Attribute::where('product_id', $product_id);
         $qty = $request->qty;
         $price_discount = $product->price - $product->price * $product->discount / 100;
-        Cart::add(['id' => $attribute->id, 
-                    'name' => $attribute->product->name, 
-                    'qty' => $qty, 'price' => $price_discount, 
-                    'options' => [ 'size' => $size->name, 
-                                    'image' => $image, 'color' => $color->name, 
-                                    'discount' => $product->discount, 
-                                    'price' => $product->price ]
-                    ]);
-        Session::flash('success', 'Add to cart succesfully!');
-        return redirect()->back();
+
+        if($request){
+            Cart::add(['id' => $product->id, 
+            'name' => $product->name, 
+            'qty' => $qty, 
+            'price' => $price_discount, 
+            'options' => [  'image' => $image, 
+                            'discount' => $product->discount, 
+                            'price' => $product->price ]
+            ]);
+            Session::flash('success', 'Thêm sản phẩm vào giỏ hàng thành công!');
+            return redirect()->back();
+        }else{
+            Session::flash('warning', 'Sản phẩm đã hết hàng hoặc không tồn tại!');
+            return redirect()->back();
+        }
     }
 
     public function update(Request $request){
-    
         $rowIds = $request->rowid;
         $qtys = $request->qty;
         foreach ($rowIds as $key => $rowId) {
             Cart::update($rowId, $qtys[$key]);
         }
 
-        Session::flash('success', 'Updated successfully!');
+        Session::flash('success', 'Cập nhật giỏ hàng thành công!');
         return redirect()->route('order');
     }
 
     public function destroy($id){
         Cart::remove($id);
-        Session::flash('success', 'Destroy product successfully!');
+        Session::flash('success', 'Xóa sản phẩm thành công!');
         return redirect()->route('order');
     }
 
@@ -268,9 +315,32 @@ class FrontendController extends Controller
             ]);
         }
 
+        Auth::user()->notify(new VerifyOrder($order));
+
         Cart::destroy();
-        Session::flash('success', 'Checkout successfully!');
+        Session::flash('success', 'Đơn hàng đã được lập, vui lòng kiểm tra lại email để xác nhận!');
         return redirect()->route('index');
+    }
+
+    public function verify($order){
+        $od = Order::find($order);
+        $od->status = 1;
+        $od->save();
+
+        Session::flash('success', 'Đơn hàng đã được xác nhận.');
+    
+        return redirect()->route('history', ['id' => Auth::id()]);
+    }
+
+    public function history($id){
+        $orders = Order::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(5);
+        return view('frontend.history')->with('orders', $orders);
+    }
+
+    public function historyDetail($id){
+        $order = Order::find($id);
+
+        return view('frontend.history-detail')->with('order', $order);
     }
 
     public function blog(){
@@ -335,7 +405,7 @@ class FrontendController extends Controller
             'content' => $content,
         ]);
 
-        Session::flash('success', 'Comment successfully!');
+        Session::flash('success', 'Bình luận thành công!');
 
         return redirect()->route('blog.detail', ['slug' => $post->slug]);
     }

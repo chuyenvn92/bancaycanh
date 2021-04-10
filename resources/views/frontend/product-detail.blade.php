@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Product detail
+	Chi tiết sản phẩm
 @endsection
 
 @section('content')
@@ -42,9 +42,9 @@
 							{{ number_format($product->price) }} {{ 'VNĐ' }}
 						</span>
 
-						<p class="stext-102 cl3 p-t-23">
+						{{-- <p class="stext-102 cl3 p-t-23">
 							{!! $product->description !!}
-						</p>
+						</p> --}}
 						
 						<!--  -->
 						<form action="{{ route('order.store') }}" method="post">
@@ -52,47 +52,13 @@
 							<input type="text" value="{{ $product->id }}" name="product_id" hidden>
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-	
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="size">
-												@foreach ($sizes as $size)
-													<option value="{{ $size->id }}">{{ $size->name }}</option>
-												@endforeach
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-	
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-	
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="color">
-												@foreach ($colors as $color)
-													<option value="{{ $color->id }}">{{ $color->name }}</option>
-												@endforeach
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-	
-								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 	
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1" required>
+											<input class="mtext-104 cl3 txt-center num-product" min="1" type="number" name="qty" value="1" required>
 	
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
@@ -100,7 +66,7 @@
 										</div>
 	
 										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-											Add to cart
+											Thêm vào giỏ hàng
 										</button>
 									</div>
 								</div>	
@@ -116,11 +82,11 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Chi tiết sản phẩm</a>
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{ $comments_count }})</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá({{ $comments_count }})</a>
 						</li>
 					</ul>
 
@@ -167,21 +133,20 @@
 
 										<!-- Add review -->
 										<div class="p-t-40">
+											<h5 class="mtext-108 cl2 p-b-7">
+												Thêm đánh giá
+											</h5>
 											<form class="w-full" method="POST" action="{{ route('product.store', ['id' => $product->id]) }}">
 												@csrf
-												<h5 class="mtext-108 cl2 p-b-7">
-													Add a review
-												</h5>
-
 												<div class="row p-b-25">
 													<div class="col-12 p-b-5">
-														<label class="stext-102 cl3" for="review">Your review</label>
+														<label class="stext-102 cl3" for="review">Đánh giá của bạn</label>
 														<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 													</div>
 												</div>
 
 												<button id="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-													Submit
+													Cập nhật
 												</button>
 											</form>
 										</div>
@@ -202,7 +167,7 @@
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Related Products
+					Sản phẩm liên quan
 				</h3>
 			</div>
 
@@ -217,7 +182,7 @@
 									<img src="{{ asset('uploads/products/'.json_decode($relatedProduct->image, True)[0]['name']) }}" alt="IMG-PRODUCT">
 	
 									<a href="{{ route('product.detail', ['slug' => $relatedProduct->slug]) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-										View detail
+										Xem chi tiết
 									</a>
 								</div>
 	
@@ -231,7 +196,6 @@
 											{{ number_format($product->price) }} {{ 'VNĐ' }}
 										</span>
 									</div>
-	
 								</div>
 							</div>
 						</div>

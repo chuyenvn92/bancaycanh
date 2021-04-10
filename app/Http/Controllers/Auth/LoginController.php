@@ -47,6 +47,15 @@ class LoginController extends Controller
                         [
                             'email' => ['required', 'string', 'email', 'max:255'],
                             'password' => ['required', 'string', 'min:6'],
+                        ],
+                        [
+                            'email.required' => 'Email không được để trống',
+                            'email.string' => 'Email phải là ký tự',
+                            'email.email' => 'Email không đúng định dạng',
+                            'email.max' => 'Email không được quá 255 ký tự',
+                            'password.required' => 'Password không được bỏ trống',
+                            'password.string' => 'Password phải là ký tự',
+                            'password.min' => 'Password phải từ 6 ký tự',
                         ]
                         );
         $email = $request->email;

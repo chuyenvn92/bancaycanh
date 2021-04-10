@@ -19,62 +19,68 @@
 			<div class="row">
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
-						@foreach ($posts as $post)
-						<!-- item blog -->
-							<div class="p-b-63">
-								<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="hov-img0 how-pos5-parent">
-									<img src="{{ asset($post->image) }}" alt="IMG-BLOG">
+						@if ($posts->count() > 0)
+							@foreach ($posts as $post)
+							<!-- item blog -->
+								<div class="p-b-63">
+									<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="hov-img0 how-pos5-parent">
+										<img src="{{ asset($post->image) }}" alt="IMG-BLOG">
 
-									<div class="flex-col-c-m size-123 bg9 how-pos5">
-										<span class="ltext-107 cl2 txt-center">
-											{{ date_format(new DateTime($post->created_at), 'd') }}
-										</span>
-
-										<span class="stext-109 cl3 txt-center">
-											{{ date_format(new DateTime($post->created_at), 'm-Y')}}
-										</span>
-									</div>
-								</a>
-
-								<div class="p-t-32">
-									<h4 class="p-b-15">
-										<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="ltext-108 cl2 hov-cl1 trans-04">
-											{{ $post->title }}
-										</a>
-									</h4>
-
-									<p class="stext-117 cl6">
-										{!!  $post->content !!}
-									</p>
-
-									<div class="flex-w flex-sb-m p-t-18">
-										<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-											<span>
-												<span class="cl4">By</span> {{ $post->user->name }}  
-												<span class="cl12 m-l-4 m-r-6">|</span>
+										<div class="flex-col-c-m size-123 bg9 how-pos5">
+											<span class="ltext-107 cl2 txt-center">
+												{{ date_format(new DateTime($post->created_at), 'd') }}
 											</span>
 
-											<span>
-												@foreach ($post->tags as $tag)
-													{{ $tag->name }}, &nbsp;
-												@endforeach 
-												<span class="cl12 m-l-4 m-r-6">|</span>
+											<span class="stext-109 cl3 txt-center">
+												{{ date_format(new DateTime($post->created_at), 'm-Y')}}
+											</span>
+										</div>
+									</a>
+
+									<div class="p-t-32">
+										<h4 class="p-b-15">
+											<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="ltext-108 cl2 hov-cl1 trans-04">
+												{{ $post->title }}
+											</a>
+										</h4>
+
+										<p class="stext-117 cl6">
+											{!!  $post->content !!}
+										</p>
+
+										<div class="flex-w flex-sb-m p-t-18">
+											<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+												<span>
+													<span class="cl4">By</span> {{ $post->user->name }}  
+													<span class="cl12 m-l-4 m-r-6">|</span>
+												</span>
+
+												<span>
+													@foreach ($post->tags as $tag)
+														{{ $tag->name }}, &nbsp;
+													@endforeach 
+													<span class="cl12 m-l-4 m-r-6">|</span>
+												</span>
+
+												<span>
+													{{ $post->comments->count() }} Comments
+												</span>
 											</span>
 
-											<span>
-												{{ $post->comments->count() }} Comments
-											</span>
-										</span>
+											<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+												Continue Reading
 
-										<a href="{{ route('blog.detail', ['slug' => $post->slug]) }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-											Continue Reading
-
-											<i class="fa fa-long-arrow-right m-l-9"></i>
-										</a>
+												<i class="fa fa-long-arrow-right m-l-9"></i>
+											</a>
+										</div>
 									</div>
 								</div>
+							@endforeach
+						@else
+							<div class="p-b-63 txt-center">
+								Không có bài viết nào
 							</div>
-						@endforeach
+						@endif
 						<!-- Pagination -->
 						{{ $posts->links('vendor/pagination/paginate') }}
 					

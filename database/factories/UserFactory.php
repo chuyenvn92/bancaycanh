@@ -25,5 +25,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => Hash::make('123456'),
         'is_admin' => rand(0, 2),
         'remember_token' => str_random(10),
+        'image' => 'uploads/users/user-default',
     ];
 });

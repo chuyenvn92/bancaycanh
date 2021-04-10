@@ -3,14 +3,14 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Add user</div>
+        <div class="card-header">Thêm người dùng</div>
     
         <div class="card-body">
             <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group row">
-                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Họ tên') }}</label>
 
                     <div class="col-md-6">
                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Dob') }}</label>
+                    <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Ngày sinh') }}</label>
 
                     <div class="col-md-6">
                         <input id="dob" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" required autofocus>
@@ -38,12 +38,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
+                    <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Giới tính') }}</label>
 
                     <div class="col-md-6">
                         <select id="sex" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" name="sex" value="{{ old('sex') }}" required autofocus>
-                            <option value="1">Male</option>
-                            <option value="0">Female</option>
+                            <option value="1">Nam</option>
+                            <option value="0">Nữ</option>
                         </select>
                         
                         @if ($errors->has('sex'))
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="number_phone" class="col-md-4 col-form-label text-md-right">{{ __('Number phone') }}</label>
+                    <label for="number_phone" class="col-md-4 col-form-label text-md-right">{{ __('Số điện thoại') }}</label>
 
                     <div class="col-md-6">
                         <input id="number_phone" type="text" class="form-control{{ $errors->has('number_phone') ? ' is-invalid' : '' }}" name="number_phone" value="{{ old('number_phone') }}" required autofocus>
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                    <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Địa chỉ') }}</label>
 
                     <div class="col-md-6">
                         <textarea id="address" rows="4" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus></textarea>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -101,9 +101,9 @@
 
                     <div class="col-md-6">
                         <select id="is_admin" class="form-control{{ $errors->has('is_admin') ? ' is-invalid' : '' }}" name="is_admin" value="{{ old('is_admin') }}" required>
-                            <option value="0">Member</option>
-                            <option value="2">Employee</option>
-                            <option value="1">Manager</option>
+                            <option value="0">Khách hàng</option>
+                            <option value="2">Nhân viên</option>
+                            <option value="1">Admin</option>
                         </select>
                         @if ($errors->has('is_admin'))
                             <span class="invalid-feedback" role="alert">
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nhập lại Password') }}</label>
 
                     <div class="col-md-6">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -136,7 +136,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                    <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Hình ảnh') }}</label>
 
                     <div class="col-md-6">
                         <input id="image" type="file" class="form-control" name="image" required>
@@ -146,7 +146,7 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Add new') }}
+                            {{ __('Thêm mới') }}
                         </button>
                     </div>
                 </div>

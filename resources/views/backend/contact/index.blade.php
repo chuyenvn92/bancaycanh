@@ -3,11 +3,11 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Contact</div>
+        <div class="card-header">Liên hệ</div>
         
         <div class="card-body">
             <div class="form-group row">
-                <label for="address" class="col-md-2 col-form-label text-md-right">{{ __('Address') }}</label>
+                <label for="address" class="col-md-2 col-form-label text-md-right">{{ __('Địa chỉ') }}</label>
 
                 <div class="col-md-9">
                     <textarea readonly id="address" rows="4" class="form-control{{ $errors->has('adress') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>{{ $contact->address }}</textarea>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="number_phone" class="col-md-2 col-form-label text-md-right">{{ __('Number phone') }}</label>
+                <label for="number_phone" class="col-md-2 col-form-label text-md-right">{{ __('Số điện thoại') }}</label>
 
                 <div class="col-md-9">
                     <input readonly id="number_phone" value="{{$contact->number_phone}}" class="form-control{{ $errors->has('number_phone') ? ' is-invalid' : '' }}" name="number_phone" value="{{ old('number_phone') }}" required autofocus/>
@@ -48,7 +48,7 @@
             <div class="form-group row mb-0">
                 <div class="col-md-9 offset-md-2">
                     <a class="btn btn-primary" href="{{route('contacts.edit',['id' => $contact->id ])}}">
-                        {{ __('Edit') }}
+                        {{ __('Lưu') }}
                     </a>
                 </div>
             </div>

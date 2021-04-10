@@ -22,8 +22,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'dashboad' => 'HomeController',
         'orders' => 'OrderController',
         'productcategories' => 'ProductCategoryController',
-        'sizes' => 'SizeController',
-        'colors' => 'ColorController',
         'products' => 'ProductController',
         'commentproducts' => 'CommentProductController',
         'tags' => 'TagController',
@@ -55,6 +53,9 @@ Route::get('/product-detail/{slug}', 'FrontendController@productDetail')->name('
 Route::post('/product-detail/store/{id}', 'FrontendController@storeCommentProduct')->name('product.store')->middleware('user');
 Route::get('/product-detail/paginate', 'FrontendController@paginateProduct')->name('paginate.product');
 
+Route::get('/history/{id}', 'FrontendController@history')->name('history')->middleware('user');
+Route::get('/history/detail/{id}', 'FrontendController@historyDetail')->name('history.detail')->middleware('user');
+Route::get('/verify/{order}', 'FrontendController@verify')->name('verify');
 
 Route::get('/order', 'FrontendController@order')->name('order');
 Route::post('/order/store', 'FrontendController@store')->name('order.store');

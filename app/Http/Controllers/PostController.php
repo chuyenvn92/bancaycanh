@@ -51,7 +51,14 @@ class PostController extends Controller
                             'content' => 'required',
                             'tags' => 'required',
                             'image' => 'required'
-                        ]    
+                        ],
+                        [
+                            'post_category_id.required' => 'Hãy chọn danh mục bài viết',
+                            'title.required' => 'Tiêu đề bài viết không được để trống.',
+                            'content.required' => 'Nội dung bài viết không được để trống.',
+                            'tags.required' => 'Hãy chọn tag cho bài viết',
+                            'image.required' => 'Hãy chọn hình ảnh cho bài viết',
+                        ]
         );
  
         $image_upload = $request->image;
@@ -70,7 +77,7 @@ class PostController extends Controller
 
         $post->tags()->attach($request->tags);
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('posts.create');
     }
@@ -116,7 +123,12 @@ class PostController extends Controller
                             'title' => 'required',
                             'content' => 'required',
                             'tags' => 'required',
-                        ]    
+                        ],
+                        [
+                            'title.required' => 'Tiêu đề bài viết không được để trống.',
+                            'content.required' => 'Nội dung bài viết không được để trống.',
+                            'tags.required' => 'Hãy chọn tag cho bài viết.'
+                        ]
         );
 
         $post = Post::find($id);
@@ -139,7 +151,7 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        Session::flash('success', 'Edit successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('posts.edit', ['post' => $post]);
     }
@@ -160,7 +172,7 @@ class PostController extends Controller
         
         $post->tags()->detach();
         $post->delete();
-        Session::flash('success','Destroy successfully!');
+        Session::flash('success','Xóa thành công!');
 
         return redirect()->route('posts.index');
     }

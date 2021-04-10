@@ -85,7 +85,7 @@ class CommentPostController extends Controller
         $commentpost = CommentPost::find($id);
         $commentpost->delete();
 
-        Session::flash('success', 'Destroy successfully!');
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('commentposts.index');
     }

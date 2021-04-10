@@ -76,6 +76,11 @@ class ContactController extends Controller
                             'address' => 'required',
                             'number_phone' => 'required',
                             'email' => 'required'
+                        ],
+                        [
+                            'address.required' => 'Địa chỉ không được để trống.',
+                            'number_phone.required' => 'Số điện thoại không được để trống',
+                            'email.required' => 'E-mail thoại không được để trống'
                         ]
         );
 
