@@ -12,8 +12,6 @@ use App\Product;
 use App\Attribute;
 use App\Contact;
 use App\About;
-use App\Color;
-use App\Size;
 use App\Tag;
 use App\PostCategory;
 use App\Post;
@@ -183,13 +181,11 @@ class FrontendController extends Controller
         $slides = Slide::all();
         $productCategories = ProductCategory::all();
         $products = Product::paginate(8);
-        $colors = Color::all();
         $tags = Tag::all();
 
         return view('frontend.index')->with('slides', $slides)
                                     ->with('productCategories', $productCategories)
                                     ->with('products', $products)
-                                    ->with('colors', $colors)
                                     ->with('tags', $tags);
     }
 
@@ -206,26 +202,20 @@ class FrontendController extends Controller
     public function product(){
         $productCategories = ProductCategory::all();
         $products = Product::paginate(8);
-        $colors = Color::all();
         $tags = Tag::all();
 
         return view('frontend.product')->with('productCategories', $productCategories)
                                         ->with('products', $products)
-                                        ->with('colors', $colors)
                                         ->with('tags', $tags);
     }
 
     public function productDetail($slug){
         $product = Product::where('slug', $slug)->first();
         $relatedProducts = Product::where('product_category_id', $product->product_category->id)->get();
-        $sizes = Size::all();
-        $colors = Color::all();
         $comments = CommentProduct::where('product_id', $product->id)->orderBy('created_at', 'DESC')->paginate(3);
         $comments_count = CommentProduct::where('product_id', $product->id)->count();
         return view('frontend.product-detail')->with('product', $product)
                                                 ->with('relatedProducts', $relatedProducts)
-                                                ->with('sizes', $sizes)
-                                                ->with('colors', $colors)
                                                 ->with('comments', $comments)
                                                 ->with('comments_count', $comments_count);
     }
@@ -253,12 +243,10 @@ class FrontendController extends Controller
                             ->orWhere('price', 'like', '%'. $id . '%')
                             ->orWhere('discount', 'like', '%'. $id . '%')->paginate(12);
         $productCategories = ProductCategory::all();
-        $colors = Color::all();
         $tags = Tag::all();
 
         return view('frontend.product')->with('productCategories', $productCategories)
                                         ->with('products', $products)
-                                        ->with('colors', $colors)
                                         ->with('tags', $tags);
     }
 

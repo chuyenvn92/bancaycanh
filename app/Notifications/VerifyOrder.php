@@ -43,10 +43,10 @@ class VerifyOrder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('[Torano]_Xác nhận đơn hàng')
-                    ->line('Quý khách đã đặt hàng tại torano. Vui lòng nhấn nút xác nhận để mua hàng!')
+                    ->subject('Xác nhận đơn hàng')
+                    ->line('Quý khách đã đặt hàng tại Shop. Vui lòng nhấn nút xác nhận để mua hàng!')
                     ->action('Xác nhận!', route('verify', ['order' => $this->order]))
-                    ->line('Cảm ơn quý khách đã mua hàng tại torano!');
+                    ->line('Cảm ơn quý khách đã mua hàng tại Shop');
     }
 
     /**

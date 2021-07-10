@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Shoping cart
+	Giỏ hàng
 @endsection
 
 @section('content')
@@ -21,12 +21,12 @@
 							<table class="table-shopping-cart">
 								@if (Cart::count())
 									<tr class="table_head">
-										<th class="column-1">Product</th>
+										<th class="column-1">Sản phẩm</th>
 										<th class="column-2"></th>
-										<th class="column-3">Discount</th>
-										<th class="column-3">Price</th>
-										<th class="column-4">Quantity</th>
-										<th class="column-5">Total</th>
+										<th class="column-3">Giảm giá</th>
+										<th class="column-3">Giá</th>
+										<th class="column-4">Số lượng</th>
+										<th class="column-5">Tổng tiền</th>
 									</tr>
 									@foreach ($carts as $cart)
 										<tr class="table_row">

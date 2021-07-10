@@ -3,11 +3,11 @@
     <div class="row">
         <div class="card">
             <div class="card-title">
-                Torano
+                Shop cây cảnh
             </div>
             <div class="card-body">
                 <h3>Xin chào quý khách!</h3>
-                <p>Quý khách đã đặt hàng tại torano. Vui lòng nhấn nút xác nhận để mua hàng!</p>
+                <p>Quý khách đã đặt hàng tại Shop. Vui lòng nhấn nút xác nhận để mua hàng!</p>
                 <div class="col-md-12">
                     <table class="table table-border table-hover">
                         <thead>
@@ -51,7 +51,7 @@
                 <a class="btn btn-primary" href="{{ route('verify', ['order' => $order->id]) }}">Xác nhận!</a>
             </div>
 
-            <div class="card-footer">Cảm ơn quý khách đã mua hàng tại torano!</div>
+            <div class="card-footer">Cảm ơn quý khách đã mua hàng tại Shop!</div>
         </div>
     </div>
 </div>

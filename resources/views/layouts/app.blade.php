@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ 'Torano' }}</title>
+    <title>{{ 'Bán cây cảnh' }}</title>
 	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/logo.ico')}}"/>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -94,7 +94,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item"><a href="{{route('dashboad.index')}}">Bảng điều khiển</a></li>
                                     <li class="list-group-item"><a href="{{route('productcategories.index')}}">Quản lý danh mục sản phẩm</a></li>
-                                    <li class="list-group-item"><a href="{{route('sizes.index')}}">Quản lý size</a></li>
+                                    <!-- <li class="list-group-item"><a href="{{route('sizes.index')}}">Quản lý size</a></li> -->
                                     <li class="list-group-item"><a href="{{route('colors.index')}}">Quản lý color</a></li>
                                     <li class="list-group-item"><a href="{{route('products.index')}}">Quản lý sản phẩm</a></li>
                                     <li class="list-group-item"><a href="{{route('tags.index')}}">Quản lý tag</a></li>

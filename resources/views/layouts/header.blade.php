@@ -5,17 +5,17 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over 1000k
+                    Miễn phí ship với hoá đơn 100k
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
                     @guest
                         <a href="{{ route('user.login') }}" class="flex-c-m trans-04 p-lr-25">
-                            Login
+                            Đăng nhập
                         </a>
     
                         <a href="{{ route('user.register') }}" class="flex-c-m trans-04 p-lr-25">
-                            Register
+                            Đăng kí
                         </a>
                     @else
                         <a class="flex-c-m trans-04 p-lr-25" href="{{ route('user.profile', ['id' => Auth::user()->id]) }}">
@@ -25,7 +25,7 @@
                         <a class="flex-c-m trans-04 p-lr-25" href="{{ route('user.logout') }}"
                             onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Đăng xuất') }}
                             </a>
                             
                         <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
@@ -48,23 +48,23 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="{{ Route::is('index') ? 'active-menu' : '' }}">
-                            <a href="{{ route('index') }}">Home</a>
+                            <a href="{{ route('index') }}">Trang chủ</a>
                         </li>
 
                         <li class="{{ Route::is('product') ? 'active-menu' : '' }}">
-                            <a href="{{ route('product') }}">Shop</a>
+                            <a href="{{ route('product') }}">Sản phẩm</a>
                         </li >
 
                         <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
-                            <a href="{{ route('blog') }}">Blog</a>
+                            <a href="{{ route('blog') }}">Tin tức</a>
                         </li>
 
                         <li class="{{ Route::is('about') ? 'active-menu' : '' }}">
-                            <a href="{{ route('about') }}">About</a>
+                            <a href="{{ route('about') }}">Giới thiệu</a>
                         </li>
 
                         <li class="{{ Route::is('contact') ? 'active-menu' : '' }}">
-                            <a href="{{ route('contact') }}">Contact</a>
+                            <a href="{{ route('contact') }}">Liên hệ</a>
                         </li>
                     </ul>
                 </div>	
@@ -121,7 +121,7 @@
         <ul class="topbar-mobile">
             <li>
                 <div class="left-top-bar">
-                    Free shipping for standard order over 1000k
+                    Miễn phí ship chho đơn 100k
                 </div>
             </li>
 
@@ -185,7 +185,7 @@
                 <button class="flex-c-m trans-04" type="submit">
                     <i class="zmdi zmdi-search"></i>
                 </button>
-                <input class="plh3" type="text" name="search" placeholder="Search...">
+                <input class="plh3" type="text" name="search" placeholder="Tìm kiếm ....">
             </form>
         </div>
     </div>

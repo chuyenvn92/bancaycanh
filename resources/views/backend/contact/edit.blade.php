@@ -14,7 +14,7 @@
                         <label for="address" class="col-md-2 col-form-label text-md-right">{{ __('Địa chỉ') }}</label>
         
                         <div class="col-md-9">
-                            <textarea id="address" rows="4" class="form-control{{ $errors->has('adress') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>{{ $contact->address }}</textarea>
+                            <textarea id="address" rows="4" class="form-control{{ $errors->has('adress') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required>{{ $contact->address }}</textarea>
                             @if ($errors->has('address'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('address') }}</strong>
@@ -40,7 +40,7 @@
                         <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('E-mail') }}</label>
         
                         <div class="col-md-9">
-                            <input id="email" value="{{$contact->email}}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus/>
+                            <input id="email" value="{{$contact->email}}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required/>
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>

@@ -22,8 +22,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'dashboad' => 'HomeController',
         'orders' => 'OrderController',
         'productcategories' => 'ProductCategoryController',
-        'sizes' => 'SizeController',
-        'colors' => 'ColorController',
         'products' => 'ProductController',
         'commentproducts' => 'CommentProductController',
         'tags' => 'TagController',
@@ -33,7 +31,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'abouts' => 'AboutController',
         'contacts' => 'ContactController',
         'slides' => 'SlideController',
-        'users' => 'UserController'
+        'users' => 'UserController',
+        'sizes' => 'SizeController',
+        'colors' => 'ColorsController'
     ]);
 });
 

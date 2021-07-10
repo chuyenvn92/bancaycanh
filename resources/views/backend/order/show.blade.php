@@ -65,8 +65,11 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên sản phẩm</th>
+<<<<<<< HEAD
                                 <th>Size</th>
                                 <th>Color</th>
+=======
+>>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
                                 <th>Số lượng</th>
                                 <th>Giá</th>
                                 <th>Chiết khấu</th>
@@ -76,13 +79,11 @@
                         <tbody>
                             @foreach ($order->order_details as $order_detail)
                                 <tr>
-                                    <th>{{ $order_detail->attribute->product->id }}</th>
+                                    <th>{{ $order_detail->id }}</th>
                                     <th>
                                         <img src="{{ asset($order_detail->image) }}" alt="" style="with:100px; height:80px;">
                                         {{ $order_detail->attribute->product->name }}
                                     </th>
-                                    <th>{{ $order_detail->attribute->size->name }}</th>
-                                    <th>{{ $order_detail->attribute->color->name }}</th>
                                     <th>{{ $order_detail->qty }}</th>
                                     <th>{{ number_format($order_detail->attribute->product->price) }} {{ 'VNĐ' }}</th>
                                     <th>{{ $order_detail->attribute->product->discount }} %</th>
