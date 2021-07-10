@@ -79,6 +79,11 @@
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </a>
 
+                    @auth
+                        <a href="{{ route('history', ['user_id' => Auth::id()]) }}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+                            <i class="zmdi zmdi-time-restore"></i>
+                        </a>
+                    @endauth
                 </div>
             </nav>
         </div>	
@@ -88,7 +93,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->		
         <div class="logo-mobile">
-            <a href="index.html"><img src="{{ asset('frontend/images/icons/logo.png') }}" alt="IMG-LOGO"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('frontend/images/icons/logo.png') }}" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
-{
+{   
     protected $fillable = ['user_id', 'total_price', 'status'];
 
     public function order_details()

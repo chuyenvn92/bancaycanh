@@ -59,7 +59,16 @@ class ProductController extends Controller
                             'price' => 'required',
                             'discount' => 'required',
                             'image' => 'required'
-                        ]    
+                        ],
+                        [
+                            'product_category_id.required' => 'Hãy chọn danh mục sản phẩm',
+                            'name.required' => 'Tên sản phẩm không được để trống.',
+                            'description.required' => 'Mô tả không được để trống.',
+                            'import_price.required' => 'Giá nhập không được để trống.',
+                            'price.required' => 'Giá bán không được để trống',
+                            'discount.required' => 'Giảm giá không được để trống',
+                            'image.required' => 'Hãy chọn hình ảnh cho sản phẩm.'
+                        ]
         );
         $arr_image = array();
         foreach ($request->image as $image) {
@@ -92,7 +101,7 @@ class ProductController extends Controller
             ]);
         }
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('products.create');
     }
@@ -152,7 +161,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        Session::flash('success','Destroy successfully!');
+        Session::flash('success','Xóa thành công!');
 
         return redirect()->route('products.index');
     }

@@ -92,7 +92,7 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 	
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1" required>
+											<input class="mtext-104 cl3 txt-center num-product" min="1" type="number" name="qty" value="1" required>
 	
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
@@ -167,12 +167,11 @@
 
 										<!-- Add review -->
 										<div class="p-t-40">
+											<h5 class="mtext-108 cl2 p-b-7">
+												Add a review
+											</h5>
 											<form class="w-full" method="POST" action="{{ route('product.store', ['id' => $product->id]) }}">
 												@csrf
-												<h5 class="mtext-108 cl2 p-b-7">
-													Add a review
-												</h5>
-
 												<div class="row p-b-25">
 													<div class="col-12 p-b-5">
 														<label class="stext-102 cl3" for="review">Your review</label>
@@ -231,7 +230,6 @@
 											{{ number_format($product->price) }} {{ 'VNĐ' }}
 										</span>
 									</div>
-	
 								</div>
 							</div>
 						</div>

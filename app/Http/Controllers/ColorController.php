@@ -41,6 +41,10 @@ class ColorController extends Controller
                         [
                             'name' => 'required',
                             'color_code' => 'required'
+                        ],
+                        [
+                            'name.required' => 'Tên màu không được để trống',
+                            'color_code.required' => 'Mã màu không được để trống'
                         ]
         );
 
@@ -49,7 +53,7 @@ class ColorController extends Controller
             'color_code' => $request->color_code,
         ]);
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('colors.create');
     }
@@ -90,6 +94,10 @@ class ColorController extends Controller
                         [
                             'name' => 'required',
                             'color_code' => 'required'
+                        ],
+                        [
+                            'name.required' => 'Tên màu không được để trống',
+                            'color_code.required' => 'Mã màu không được để trống'
                         ]
         );
 
@@ -98,7 +106,7 @@ class ColorController extends Controller
         $color->color_code = $request->color_code;
         $color->save();
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('colors.edit', [ 'color' => $color ]);
     }
@@ -114,7 +122,7 @@ class ColorController extends Controller
         $color = Color::find($id);
         $color->delete();
 
-        Session::flash('success', 'Destroy successfully!');
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('colors.index');
     }

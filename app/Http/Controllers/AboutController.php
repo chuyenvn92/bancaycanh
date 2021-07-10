@@ -76,6 +76,10 @@ class AboutController extends Controller
                         [
                             'title' => 'required',
                             'content' => 'required'
+                        ],
+                        [
+                            'title.required' => 'Tiêu đề không được để trống',
+                            'content.required' => 'Nội dung không được để trống'
                         ]
         );
 
@@ -85,7 +89,7 @@ class AboutController extends Controller
         $about->content = $request->content;
         $about->save();
 
-        Session::flash('success', 'Edit successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('abouts.edit', ['about' => $about]);
 

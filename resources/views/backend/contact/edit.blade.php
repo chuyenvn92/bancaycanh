@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Edit contact</div>
+        <div class="card-header">Sửa liên hệ</div>
         
         <div class="card-body">
             <form method="POST" action="{{ route('contacts.update', ['id' => $contact->id ]) }}">
@@ -11,7 +11,7 @@
                 @method('PUT')
 
                     <div class="form-group row">
-                        <label for="address" class="col-md-2 col-form-label text-md-right">{{ __('Address') }}</label>
+                        <label for="address" class="col-md-2 col-form-label text-md-right">{{ __('Địa chỉ') }}</label>
         
                         <div class="col-md-9">
                             <textarea id="address" rows="4" class="form-control{{ $errors->has('adress') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>{{ $contact->address }}</textarea>
@@ -24,7 +24,7 @@
                     </div>
         
                     <div class="form-group row">
-                        <label for="number_phone" class="col-md-2 col-form-label text-md-right">{{ __('Number phone') }}</label>
+                        <label for="number_phone" class="col-md-2 col-form-label text-md-right">{{ __('Số điện thoại') }}</label>
         
                         <div class="col-md-9">
                             <input id="number_phone" value="{{$contact->number_phone}}" class="form-control{{ $errors->has('number_phone') ? ' is-invalid' : '' }}" name="number_phone" value="{{ old('number_phone') }}" required autofocus/>
@@ -52,7 +52,7 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-9 offset-md-2">
                         <button class="btn btn-primary" type="submit">
-                            {{ __('OK') }}
+                            {{ __('Sửa') }}
                         </button>
                     </div>
                 </div>

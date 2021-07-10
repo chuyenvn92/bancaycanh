@@ -42,7 +42,13 @@ class SlideController extends Controller
                             'title' => 'required',
                             'content' => 'required',
                             'image' => 'required'
-                        ]);
+                        ],
+                        [
+                            'title.required' => 'Tiêu đề slide không được để trống',
+                            'content.required' => 'Nội dung slide không được để trống',
+                            'image.required' => 'Hãy chọn hình ảnh cho slide'
+                        ]
+        );
         $image_upload = $request->image;
         $image_new_name = time() . $image_upload->getClientOriginalName();
         $image_upload->move('uploads/slides', $image_new_name);
@@ -54,7 +60,7 @@ class SlideController extends Controller
             'image' => $image
         ]);
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('slides.create');
 
@@ -94,10 +100,15 @@ class SlideController extends Controller
     {
         
         $this->validate($request,
-        [
-            'title' => 'required',
-            'content' => 'required',
-        ]);
+                        [
+                            'title' => 'required',
+                            'content' => 'required',
+                        ],
+                        [
+                            'title.required' => 'Tiêu đề slide không được để trống.',
+                            'content.required' => 'Nội dung slide không được để trống.',
+                        ]
+        );
 
         $slide = Slide::find($id);
         
@@ -114,7 +125,7 @@ class SlideController extends Controller
         $slide->content = $request->content;
         $slide->save();
 
-        Session::flash('success', 'Edit successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('slides.edit', ['slide' => $slide]);
     }
@@ -135,7 +146,7 @@ class SlideController extends Controller
 
         $slide->delete();
 
-        Session::flash('success','Destroy successfully!');
+        Session::flash('success','Xóa thành công!');
 
         return redirect()->route('slides.index');
     }

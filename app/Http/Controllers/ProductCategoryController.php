@@ -39,15 +39,19 @@ class ProductCategoryController extends Controller
     {
         $this->validate($request,
                         [
-                            'name' => 'required | min:2'
-                        ]);
+                            'name' => 'required'
+                        ],
+                        [
+                            'name.required' => 'Tên danh mục không được để trống'
+                        ]
+        );
 
         ProductCategory::create([
             'name' => $request->name,
             'slug' => str_slug($request->name)
         ]);
         
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
         return redirect()->route('productcategories.create');
     }
 
@@ -84,15 +88,19 @@ class ProductCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,
-        [
-            'name' => 'required | min:2'
-        ]);
+                        [
+                            'name' => 'required'
+                        ],
+                        [
+                            'name.required' => 'Tên danh mục không được để trống'
+                        ]
+        );
 
         $category = ProductCategory::find($id);
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
         $category->save();
-        Session::flash('success', 'Edit successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('productcategories.edit', [ 'category' => $category ]);
     }
@@ -107,7 +115,7 @@ class ProductCategoryController extends Controller
     {
         $category = ProductCategory::find($id);
         $category->delete();
-        Session::flash('success', 'Destroy successfully!');
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('productcategories.index');
     }

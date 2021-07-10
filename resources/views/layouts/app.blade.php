@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ 'Torano' }}</title>
-    <link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/logo.ico')}}"/>
+	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/logo.ico')}}"/>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhâp') }}</a>
                             </li>
                         @else
                             <li class="nav-item">
@@ -55,13 +55,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('users.edit', ['id' => Auth::user()->id]) }}">
-                                        {{ __('Profile') }}
+                                        {{ __('Thông tin cá nhân') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Đăng xuất') }}
                                      </a>
                                      
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -80,23 +80,25 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-md-3">
-                        <a class="form-control btn btn-primary" href="{{route('orders.index')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp; Order Management</a>
+                        <a class="form-control btn btn-primary" href="{{route('orders.index')}}">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp; Quản lý đơn đặt hàng
+                        </a>
                         <br>
                         <br>
                         <div class="card border-primary">
                             <div class="card-header border-primary">
-                                Product Management
+                                Sản phẩm
                             </div>
             
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="{{route('dashboad.index')}}">Dashboard</a></li>
-                                    <li class="list-group-item"><a href="{{route('productcategories.index')}}">Product categories</a></li>
-                                    <li class="list-group-item"><a href="{{route('sizes.index')}}">Sizes</a></li>
-                                    <li class="list-group-item"><a href="{{route('colors.index')}}">Color</a></li>
-                                    <li class="list-group-item"><a href="{{route('products.index')}}">Products</a></li>
-                                    <li class="list-group-item"><a href="{{route('tags.index')}}">Tags</a></li>
-                                    <li class="list-group-item"><a href="{{route('commentproducts.index')}}">Product comments</a></li>
+                                    <li class="list-group-item"><a href="{{route('dashboad.index')}}">Bảng điều khiển</a></li>
+                                    <li class="list-group-item"><a href="{{route('productcategories.index')}}">Quản lý danh mục sản phẩm</a></li>
+                                    <li class="list-group-item"><a href="{{route('sizes.index')}}">Quản lý size</a></li>
+                                    <li class="list-group-item"><a href="{{route('colors.index')}}">Quản lý color</a></li>
+                                    <li class="list-group-item"><a href="{{route('products.index')}}">Quản lý sản phẩm</a></li>
+                                    <li class="list-group-item"><a href="{{route('tags.index')}}">Quản lý tag</a></li>
+                                    <li class="list-group-item"><a href="{{route('commentproducts.index')}}">Quản lý bình luận sản phẩm</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -104,14 +106,14 @@
                         
                         <div class="card border-primary">
                             <div class="card-header border-primary">
-                                Post Management
+                                Bài viết
                             </div>
             
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="{{route('postcategories.index')}}">Post categories</a></li>
-                                    <li class="list-group-item"><a href="{{route('posts.index')}}">Posts</a></li>
-                                    <li class="list-group-item"><a href="{{route('commentposts.index')}}">Post comments</a></li>
+                                    <li class="list-group-item"><a href="{{route('postcategories.index')}}">Quản lý danh mục bài viết</a></li>
+                                    <li class="list-group-item"><a href="{{route('posts.index')}}">Quản lý bài viết</a></li>
+                                    <li class="list-group-item"><a href="{{route('commentposts.index')}}">Quản lý bình luận bài viết</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -119,15 +121,15 @@
                         
                         <div class="card border-primary">
                             <div class="card-header border-primary">
-                                System Management
+                                Hệ thống
                             </div>
 
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="{{route('slides.index')}}">Slides</a></li>
-                                    <li class="list-group-item"><a href="{{route('abouts.index')}}">About</a></li>
-                                    <li class="list-group-item"><a href="{{route('contacts.index')}}">Contact</a></li>
-                                    <li class="list-group-item"><a href="{{route('users.index')}}">Users</a></li>
+                                    <li class="list-group-item"><a href="{{route('slides.index')}}">Quản lý slide</a></li>
+                                    <li class="list-group-item"><a href="{{route('abouts.index')}}">Quản lý giới thiệu</a></li>
+                                    <li class="list-group-item"><a href="{{route('contacts.index')}}">Quản lý liên hệ</a></li>
+                                    <li class="list-group-item"><a href="{{route('users.index')}}">Quản lý người dùng</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -150,23 +152,8 @@
         @endif
     </script>
     @yield('script')
-    {{-- <script>
-        $(document).ready(function(){
-    $('#myTable').DataTable({
-       "language": {
-         "search": "Tìm kiếm:",
-         "paginate": {
-           "sFirst": "Trang đầu",
-           "sLast": "Trang cuối",
-           "sNext": "Trang sau" ,
-           "sPrevious": "Trang trước",          
-         },
-         "info": "Hiển thị từ _START_ tới _END_ của _TOTAL_ bản ghi",
-         "lengthMenu":     "Hiện _MENU_ bản ghi",         
-       },
-       "bInfo" : false,//hiển thị số bản ghi
-    });
-});	
-    </script> --}}
+    <script>
+
+    </script>
 </body>
 </html>

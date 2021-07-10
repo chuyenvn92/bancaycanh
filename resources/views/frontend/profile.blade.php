@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Profile
+@endsection
+
 @section('content')
 <form class="bg0 p-t-75 p-b-85" action="{{ route('user.update', ['id' => $user->id]) }}" method="POST">
         @csrf
@@ -33,7 +37,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
+            <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
             <div class="col-md-6">
                 <select id="sex" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" name="sex" value="{{ old('sex') }}" required autofocus>

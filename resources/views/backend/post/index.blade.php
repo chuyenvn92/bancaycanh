@@ -3,20 +3,20 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Posts</div>
+        <div class="card-header">Danh sách bài viết</div>
     
         <div class="card-body">
-            <a style="margin-bottom:20px;" class="btn btn-primary" href="{{ route('posts.create') }}"><span class="fa fa-plus"></span>&nbsp;&nbsp;Add post</a>
+            <a style="margin-bottom:20px;" class="btn btn-primary" href="{{ route('posts.create') }}"><span class="fa fa-plus"></span>&nbsp;&nbsp;Thêm bài viết</a>
             <table id="myTable" class="table table-border table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Content</th>
+                        <th>Hình ảnh</th>
+                        <th>Tiêu đề</th>
+                        <th>Nội dung</th>
                         <th>Tag</th>
-                        <th>Edit</th>
-                        <th>Destroy</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,20 +37,20 @@
                                     </ul>
                                 </th>
                                 <th>
-                                    <a class="btn btn-xs btn-outline-primary" href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a>
+                                    <a class="btn btn-xs btn-outline-primary" href="{{ route('posts.edit', ['id' => $post->id]) }}">Sửa</a>
                                 </th>
                                 <th>
                                     <form action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-outline-danger" type="submit">Destroy</button>
+                                        <button class="btn btn-outline-danger" type="submit">Xóa</button>
                                     </form>
                                 </th>
                             </tr>
                         @endforeach
                     @else
                             <tr>
-                                <th class="text-center" colspan="8">No data</th>
+                                <th class="text-center" colspan="8">Không có dữ liệu</th>
                             </tr>
                     @endif
                 </tbody>
@@ -66,11 +66,24 @@
     
 @section('script')
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-    <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
-    </script>
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+        "language": {
+            "search": "Tìm kiếm:",
+            "paginate": {
+            "sFirst": "Trang đầu",
+            "sLast": "Trang cuối",
+            "sNext": "Trang sau" ,
+            "sPrevious": "Trang trước",          
+            },
+            "info": "Hiển thị từ _START_ tới _END_ của _TOTAL_ bản ghi",
+            "lengthMenu":     "Hiện _MENU_ bản ghi",         
+        },
+        "bInfo" : false,//hiển thị số bản ghi
+        });
+    });	
+</script>
 @endsection
 
 

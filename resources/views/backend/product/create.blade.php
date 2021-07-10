@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Add product</div>
+        <div class="card-header">Thêm sản phẩm</div>
     
         <div class="card-body">
             @if ($productCategories->count() > 0 && $tags->count() > 0)
@@ -11,7 +11,7 @@
                     @csrf
 
                     <div class="form-group row">
-                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Product categories') }}</label>
+                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Chọn danh mục sản phẩm') }}</label>
 
                         <div class="col-md-9">
                             <select id="product_category_id" type="text" class="form-control{{ $errors->has('product_category_id') ? ' is-invalid' : '' }}" name="product_category_id" required autofocus>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Product name') }}</label>
+                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Tên sản phẩm') }}</label>
 
                         <div class="col-md-9">
                             <textarea id="name" rows="3" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="description" class="col-md-2 col-form-label text-md-right">{{ __('Description') }}</label>
+                        <label for="description" class="col-md-2 col-form-label text-md-right">{{ __('Mô tả') }}</label>
 
                         <div class="col-md-9">
                             <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}" required autofocus>
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="import_price" class="col-md-2 col-form-label text-md-right">{{ __('Import price') }}</label>
+                        <label for="import_price" class="col-md-2 col-form-label text-md-right">{{ __('Giá nhập') }}</label>
 
                         <div class="col-md-9">
                             <input min="1" id="import_price" type="number" class="form-control{{ $errors->has('import_price') ? ' is-invalid' : '' }}" name="import_price" value="{{ old('import_price') }}" required autofocus >
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Price') }}</label>
+                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Giá bán') }}</label>
 
                         <div class="col-md-9">
                             <input min="1" id="price" type="number" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}" required autofocus>
@@ -115,7 +115,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="image" class="col-md-2 col-form-label text-md-right">{{ __('Image') }}</label>
+                        <label for="image" class="col-md-2 col-form-label text-md-right">{{ __('Hình ảnh') }}</label>
 
                         <div class="col-md-9">
                             <input id="image" multiple type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image[]" value="{{ old('image') }}" required autofocus/>
@@ -128,13 +128,13 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="attribute" class="col-md-2 col-form-label text-md-right">{{ __('Add attributes') }}</label>
+                        <label for="attribute" class="col-md-2 col-form-label text-md-right">{{ __('Thêm thuộc tính') }}</label>
 
                         <div class="col-md-9">
                             <div class="field_wrapper">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <select class="form-control mb-3" name="sizes[]">
+                                        <select class="form-control mb-3" name="sizes[]" required>
                                             @foreach ($sizes as $size)
                                                 <option value="{{ $size->id }}">{{ $size->name }}</option>
                                             @endforeach
@@ -142,7 +142,7 @@
                                     </div>
             
                                     <div class="col-md-3">
-                                        <select class="form-control" name="colors[]">
+                                        <select class="form-control" name="colors[]" required>
                                             @foreach ($colors as $color)
                                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
                                             @endforeach
@@ -150,11 +150,11 @@
                                     </div>
                                     
                                     <div class="col-md-3">
-                                        <input required class="form-control" type="number" name="qtys[]" min="0" placeholder="Qty"/>
+                                        <input required class="form-control" type="number" name="qtys[]" min="1" placeholder="Số lượng"/>
                                     </div>
         
                                     <div class="col-md-3">
-                                        <a href="javascript:void(0);" class="add_button btn btn-outline-primary" title="Add field">Add</a>
+                                        <a href="javascript:void(0);" class="add_button btn btn-outline-primary" title="Add field">Thêm</a>
                                     </div>
                                 </div>
                             </div>
@@ -165,13 +165,13 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-9 offset-md-2">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Add new') }}
+                                {{ __('Thêm mới') }}
                             </button>
                         </div>
                     </div>
                 </form>
             @else 
-                Please create new <a href="{{ route('productcategories.create') }}">product category</a> and <a href="{{ route('tags.create') }}">tag</a>!
+                Vui lòng thêm <a href="{{ route('productcategories.create') }}">danh mục sản phẩm</a> và <a href="{{ route('tags.create') }}">tag</a>!
             @endif
         </div>
     </div>
@@ -193,7 +193,7 @@
             var maxField = 10; //Input fields increment limitation
             var fieldHTML = '<div class="row">';
             fieldHTML+= '<div class="col-md-3 mb-3">';
-            fieldHTML+= '<select class="form-control" name="sizes[]">';
+            fieldHTML+= '<select class="form-control" name="sizes[]" required>';
             fieldHTML+=      '@foreach ($sizes as $size)';
             fieldHTML+=           '<option value="{{ $size->id }}">{{ $size->name }}</option>';
             fieldHTML+=      '@endforeach';
@@ -201,7 +201,7 @@
             fieldHTML+= '</div>';
 
             fieldHTML+= '<div class="col-md-3">';
-            fieldHTML+= '<select class="form-control" name="colors[]">';
+            fieldHTML+= '<select class="form-control" name="colors[]" required>';
             fieldHTML+=      '@foreach ($colors as $color)';
             fieldHTML+=           '<option value="{{ $color->id }}">{{ $color->name }}</option>';
             fieldHTML+=      '@endforeach';
@@ -209,11 +209,11 @@
             fieldHTML+= '</div>';
     
             fieldHTML+= '<div class="col-md-3">'
-            fieldHTML+=   '<input required class="form-control" type="number" name="qtys[]" min="0" placeholder="Qty"/>';
+            fieldHTML+=   '<input required class="form-control" type="number" name="qtys[]" min="1" placeholder="Số lượng"/>';
             fieldHTML+= '</div>';
 
             fieldHTML+= '<div class="col-md-3">'
-            fieldHTML+=   '<a href="javascript:void(0);" class="remove_button btn btn-outline-danger">Remove</a>';
+            fieldHTML+=   '<a href="javascript:void(0);" class="remove_button btn btn-outline-danger">Xóa</a>';
             fieldHTML+= '</div>';
             fieldHTML+= '</div>'; //New input field html 
             var x = 1; //Initial field counter is 1

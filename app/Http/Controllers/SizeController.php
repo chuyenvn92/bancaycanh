@@ -39,7 +39,10 @@ class SizeController extends Controller
     {
         $this->validate($request,
                         [
-                        'name' => 'required'
+                            'name' => 'required'
+                        ],
+                        [
+                            'name.required' => 'Tên size không được để trống.'
                         ]
         );
 
@@ -47,7 +50,7 @@ class SizeController extends Controller
             'name' => $request->name
         ]);
 
-        Session::flash('success', 'Add successfully!');
+        Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('sizes.create');
     }
@@ -86,14 +89,17 @@ class SizeController extends Controller
     {
         $this->validate($request,
                         [
-                        'name' => 'required'
+                            'name' => 'required'
+                        ],
+                        [
+                            'name.requird' => 'Tên size không được để trống.'
                         ]
-                        );
+        );
 
         $size = Size::find($id);
         $size->name = $request->name;
         $size->save();
-        Session::flash('success', 'Edit successfully!');
+        Session::flash('success', 'Sửa thành công!');
 
         return redirect()->route('sizes.edit', [ 'size' => $size ]);
     }
@@ -108,7 +114,7 @@ class SizeController extends Controller
     {
         $size = Size::find($id);
         $size->delete();
-        Session::flash('success', 'Destroy successfully!');
+        Session::flash('success', 'Xóa thành công!');
 
         return redirect()->route('sizes.index');
     }

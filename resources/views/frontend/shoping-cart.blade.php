@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+	{{-- <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('frontend/images/bg-01.jpg	') }}');">
+		<h2 class="ltext-105 cl0 txt-center">
+			Shopping cart
+		</h2>
+	</section> --}}
 
 	<form class="bg0 p-t-75 p-b-85" action="{{ route('order.update') }}" method="POST">
 		@csrf
@@ -18,7 +23,7 @@
 									<tr class="table_head">
 										<th class="column-1">Product</th>
 										<th class="column-2"></th>
-										<th class="">Discount</th>
+										<th class="column-3">Discount</th>
 										<th class="column-3">Price</th>
 										<th class="column-4">Quantity</th>
 										<th class="column-5">Total</th>
@@ -46,7 +51,7 @@
 														<i class="fs-16 zmdi zmdi-minus"></i>
 													</div>
 													
-													<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty[]" value="{{ $cart->qty }}">
+													<input class="mtext-104 cl3 txt-center num-product" min="1" type="number" name="qty[]" value="{{ $cart->qty }}">
 
 													<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 														<i class="fs-16 zmdi zmdi-plus"></i>

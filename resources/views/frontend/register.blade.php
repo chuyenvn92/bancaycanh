@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Dob') }}</label>
+                <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of birth') }}</label>
 
                 <div class="col-md-6">
                     <input id="dob" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" required autofocus>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
+                <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                 <div class="col-md-6">
                     <select id="sex" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" name="sex" value="{{ old('sex') }}" required autofocus>

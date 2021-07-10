@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderDetail;
+use App\Attribute;
 use Session;
 use Illuminate\Http\Request;
 
@@ -74,10 +75,16 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
-        $order->status = 1;
+        $order_details = OrderDetail::where('order_id', $order->id)->get();
+        foreach ($order_details as $order_detail) {
+            $attribute = Attribute::find($order_detail->attribute_id);
+            $attribute->qty = $attribute->qty - $order_detail->qty;
+            $attribute->save();
+        }
+        $order->status = 2;
         $order->save();
 
-        Session::flash('success', 'Change status order successfully!');
+        Session::flash('success', 'Chuyển trạng thái đơn hàng thành công!');
 
         return redirect()->route('orders.index');
     }
@@ -94,7 +101,7 @@ class OrderController extends Controller
         OrderDetail::where('order_id', $order->id)->delete();
         $order->delete();
 
-        Session::flash('success', 'Destroy order successfully!');
+        Session::flash('success', 'Xóa đơn hàng thành công!');
         
         return redirect()->route('orders.index');
     }
