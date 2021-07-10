@@ -65,6 +65,11 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên sản phẩm</th>
+<<<<<<< HEAD
+                                <th>Size</th>
+                                <th>Color</th>
+=======
+>>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
                                 <th>Số lượng</th>
                                 <th>Giá</th>
                                 <th>Chiết khấu</th>

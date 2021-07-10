@@ -62,7 +62,10 @@ class ProductController extends Controller
                             'import_price.required' => 'Giá nhập không được để trống.',
                             'price.required' => 'Giá bán không được để trống',
                             'discount.required' => 'Giảm giá không được để trống',
+<<<<<<< HEAD
+=======
                             'qty.required' => 'Số lượng không được để trống',
+>>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
                             'image.required' => 'Hãy chọn hình ảnh cho sản phẩm.'
                         ]
         );
@@ -89,6 +92,18 @@ class ProductController extends Controller
 
         $product->tags()->attach($request->tags);
 
+<<<<<<< HEAD
+        foreach ($request->sizes as $key => $size) {
+            Attribute::create([
+                'product_id' => $product->id,
+                'size_id' => $size,
+                'color_id' => $request->colors[$key],
+                'qty' => $request->qtys[$key]
+            ]);
+        }
+
+=======
+>>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
         Session::flash('success', 'Thêm thành công!');
 
         return redirect()->route('products.index');

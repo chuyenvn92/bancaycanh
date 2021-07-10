@@ -93,7 +93,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->		
         <div class="logo-mobile">
-            <a href="{{ route('index') }}"><img src="{{ asset('frontend/images/icons/logo.png') }}" alt="Ảnh logo"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('frontend/images/icons/logo.png') }}" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->

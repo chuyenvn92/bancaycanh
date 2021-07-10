@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+	{{-- <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('frontend/images/bg-01.jpg	') }}');">
+		<h2 class="ltext-105 cl0 txt-center">
+			Shopping cart
+		</h2>
+	</section> --}}
+
 	<form class="bg0 p-t-75 p-b-85" action="{{ route('order.update') }}" method="POST">
 		@csrf
 		<div class="container">

@@ -141,6 +141,44 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
+                    <div class="form-group row">
+                        <label for="attribute" class="col-md-2 col-form-label text-md-right">{{ __('Thêm thuộc tính') }}</label>
+
+                        <div class="col-md-9">
+                            <div class="field_wrapper">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <select class="form-control mb-3" name="sizes[]" required>
+                                            @foreach ($sizes as $size)
+                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+            
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="colors[]" required>
+                                            @foreach ($colors as $color)
+                                                <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <input required class="form-control" type="number" name="qtys[]" min="1" placeholder="Số lượng"/>
+                                    </div>
+        
+                                    <div class="col-md-3">
+                                        <a href="javascript:void(0);" class="add_button btn btn-outline-primary" title="Add field">Thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+=======
+>>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
                     <div class="form-group row mb-0">
                         <div class="col-md-9 offset-md-2">
                             <button type="submit" class="btn btn-primary">
@@ -170,7 +208,27 @@
     <script>
         $(document).ready(function(){
             var maxField = 10; //Input fields increment limitation
+<<<<<<< HEAD
+            var fieldHTML = '<div class="row">';
+            fieldHTML+= '<div class="col-md-3 mb-3">';
+            fieldHTML+= '<select class="form-control" name="sizes[]" required>';
+            fieldHTML+=      '@foreach ($sizes as $size)';
+            fieldHTML+=           '<option value="{{ $size->id }}">{{ $size->name }}</option>';
+            fieldHTML+=      '@endforeach';
+            fieldHTML+= '</select>';
+            fieldHTML+= '</div>';
+
+            fieldHTML+= '<div class="col-md-3">';
+            fieldHTML+= '<select class="form-control" name="colors[]" required>';
+            fieldHTML+=      '@foreach ($colors as $color)';
+            fieldHTML+=           '<option value="{{ $color->id }}">{{ $color->name }}</option>';
+            fieldHTML+=      '@endforeach';
+            fieldHTML+= '</select>';
+            fieldHTML+= '</div>';
+    
+=======
             var fieldHTML = '<div class="row">';   
+>>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
             fieldHTML+= '<div class="col-md-3">'
             fieldHTML+=   '<input required class="form-control" type="number" name="qtys[]" min="1" placeholder="Số lượng"/>';
             fieldHTML+= '</div>';

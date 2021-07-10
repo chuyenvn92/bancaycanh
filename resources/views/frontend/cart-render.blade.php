@@ -14,6 +14,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên sản phẩm</th>
+                                <th>Size</th>
+                                <th>Color</th>
                                 <th>Số lượng</th>
                                 <th>Giá</th>
                                 <th>Chiết khấu</th>
@@ -28,6 +30,8 @@
                                         <img src="{{ asset($order_detail->image) }}" alt="" style="with:100px; height:80px;">
                                         {{ $order_detail->attribute->product->name }}
                                     </th>
+                                    <th>{{ $order_detail->attribute->size->name }}</th>
+                                    <th>{{ $order_detail->attribute->color->name }}</th>
                                     <th>{{ $order_detail->qty }}</th>
                                     <th>{{ number_format($order_detail->attribute->product->price) }} {{ 'VNĐ' }}</th>
                                     <th>{{ $order_detail->attribute->product->discount }} %</th>

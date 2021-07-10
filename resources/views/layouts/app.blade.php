@@ -93,7 +93,9 @@
                             <div class="card-body">
                                 <ul class="list-group">
                                     <li class="list-group-item"><a href="{{route('dashboad.index')}}">Bảng điều khiển</a></li>
-                                    <li class="list-group-item"><a href="{{route('productcategories.index')}}">Quản lý danh mục 
+                                    <li class="list-group-item"><a href="{{route('productcategories.index')}}">Quản lý danh mục sản phẩm</a></li>
+                                    <!-- <li class="list-group-item"><a href="{{route('sizes.index')}}">Quản lý size</a></li> -->
+                                    <li class="list-group-item"><a href="{{route('colors.index')}}">Quản lý color</a></li>
                                     <li class="list-group-item"><a href="{{route('products.index')}}">Quản lý sản phẩm</a></li>
                                     <li class="list-group-item"><a href="{{route('tags.index')}}">Quản lý tag</a></li>
                                     <li class="list-group-item"><a href="{{route('commentproducts.index')}}">Quản lý bình luận sản phẩm</a></li>

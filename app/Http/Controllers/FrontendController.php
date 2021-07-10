@@ -260,16 +260,21 @@ class FrontendController extends Controller
         $product_id = $request->product_id;
         $product = Product::find($product_id);
         $image = json_decode($product->image, True)[0]['name'];
-        // $attribute = Attribute::where('product_id', $product_id);
+        $size = Size::find($request->size);
+        $color = Color::find($request->color);
+        $attribute = Attribute::where('product_id', $product_id)
+                                ->where('size_id', $size->id)
+                                ->where('color_id', $color->id)->first();
         $qty = $request->qty;
         $price_discount = $product->price - $product->price * $product->discount / 100;
 
-        if($request){
-            Cart::add(['id' => $product->id, 
-            'name' => $product->name, 
+        if($attribute){
+            Cart::add(['id' => $attribute->id, 
+            'name' => $attribute->product->name, 
             'qty' => $qty, 
             'price' => $price_discount, 
-            'options' => [  'image' => $image, 
+            'options' => [ 'size' => $size->name, 
+                            'image' => $image, 'color' => $color->name, 
                             'discount' => $product->discount, 
                             'price' => $product->price ]
             ]);

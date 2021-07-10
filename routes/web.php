@@ -31,7 +31,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'abouts' => 'AboutController',
         'contacts' => 'ContactController',
         'slides' => 'SlideController',
-        'users' => 'UserController'
+        'users' => 'UserController',
+        'sizes' => 'SizeController',
+        'colors' => 'ColorsController'
     ]);
 });
 

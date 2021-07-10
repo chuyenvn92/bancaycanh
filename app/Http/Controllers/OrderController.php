@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderDetail;
+use App\Attribute;
 use Session;
 use Illuminate\Http\Request;
 
@@ -75,11 +76,11 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $order_details = OrderDetail::where('order_id', $order->id)->get();
-        // foreach ($order_details as $order_detail) {
-        //     $attribute = Attribute::find($order_detail->attribute_id);
-        //     $attribute->qty = $attribute->qty - $order_detail->qty;
-        //     $attribute->save();
-        // }
+        foreach ($order_details as $order_detail) {
+            $attribute = Attribute::find($order_detail->attribute_id);
+            $attribute->qty = $attribute->qty - $order_detail->qty;
+            $attribute->save();
+        }
         $order->status = 2;
         $order->save();
 
