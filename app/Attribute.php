@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    protected $fillable = ['product_id', 'qty'];
+    protected $fillable = ['product_id', 'size_id', 'color_id', 'qty'];
     
     public function product()
     {
@@ -18,4 +18,13 @@ class Attribute extends Model
         return $this->belongsTo('App\OrderDetail');
     }
     
+    public function color()
+    {
+        return $this->belongsTo('App\Color');
+    }
+
+    public function size()
+    {
+        return $this->belongsTo('App\Size');
+    }
 }

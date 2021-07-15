@@ -42,15 +42,49 @@
 							{{ number_format($product->price) }} {{ 'VNĐ' }}
 						</span>
 
-						{{-- <p class="stext-102 cl3 p-t-23">
+						<p class="stext-102 cl3 p-t-23">
 							{!! $product->description !!}
-						</p> --}}
+						</p>
 						
 						<!--  -->
 						<form action="{{ route('order.store') }}" method="post">
 							@csrf
 							<input type="text" value="{{ $product->id }}" name="product_id" hidden>
 							<div class="p-t-33">
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Kích cỡ
+									</div>
+	
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="size">
+												@foreach ($sizes as $size)
+													<option value="{{ $size->id }}">{{ $size->name }}</option>
+												@endforeach
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+									</div>
+								</div>
+	
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Màu sắc
+									</div>
+	
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="color">
+												@foreach ($colors as $color)
+													<option value="{{ $color->id }}">{{ $color->name }}</option>
+												@endforeach
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+									</div>
+								</div>
+	
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
@@ -66,7 +100,7 @@
 										</div>
 	
 										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-											Thêm vào giỏ hàng
+										Thêm vào giỏ hàng
 										</button>
 									</div>
 								</div>	
@@ -134,7 +168,7 @@
 										<!-- Add review -->
 										<div class="p-t-40">
 											<h5 class="mtext-108 cl2 p-b-7">
-												Thêm đánh giá
+											Thêm đánh giá
 											</h5>
 											<form class="w-full" method="POST" action="{{ route('product.store', ['id' => $product->id]) }}">
 												@csrf
@@ -146,7 +180,7 @@
 												</div>
 
 												<button id="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-													Cập nhật
+												Cập nhật
 												</button>
 											</form>
 										</div>

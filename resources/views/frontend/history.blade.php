@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	History shopping
+	Lịch sử đặt hàng
 @endsection
 
 @section('content')
@@ -21,12 +21,12 @@
 							<table class="table-shopping-cart">
 								@if ($orders->count() > 0)
 									<tr class="table_head">
-										<th class="column-1">ID</th>
-										<th class="column-2">User</th>
-										<th class="column-3">Total price</th>
-										<th class="column-3">Status</th>
-										<th class="column-3">Created_at</th>
-										<th class="column-5">Detail</th>
+										<th class="column-1">STT</th>
+										<th class="column-2">Tên</th>
+										<th class="column-3">Thành tiền</th>
+										<th class="column-3">Trạng thái</th>
+										<th class="column-3">Ngày tạo</th>
+										<th class="column-5">Chi tiết</th>
 									</tr>
 									@foreach ($orders as $order)
 										<tr class="table_row">
@@ -35,21 +35,21 @@
 											<td class="column-3">{{ number_format($order->total_price) }} {{ 'VNĐ' }}</td>
 											<td class="column-3">
 												@if ($order->status == 0)
-													<button class="btn btn-xs btn-danger" disabled><span class="fa fa-remove"></span>&nbsp;{{ 'Not verified' }}</button>  
+													<button class="btn btn-xs btn-danger" disabled><span class="fa fa-remove"></span>&nbsp;{{ 'Chưa xác nhận' }}</button>  
 												@elseif($order->status == 1)
-													<button class="btn btn-xs btn-primary" disabled><span class="fa fa-spinner"></span>&nbsp;{{ 'Waiting handle' }}</button>
+													<button class="btn btn-xs btn-primary" disabled><span class="fa fa-spinner"></span>&nbsp;{{ 'Chờ duyệt' }}</button>
 												@else
-													<button class="btn btn-xs btn-success" disabled>&nbsp;<span class="fa fa-check"></span>&nbsp;{{ 'Handled' }}</button>
+													<button class="btn btn-xs btn-success" disabled>&nbsp;<span class="fa fa-check"></span>&nbsp;{{ 'Đã nhận đơn' }}</button>
 												@endif
                                             </td>
 											
 											<td class="column-3">{{ date_format(new DateTime($order->created_at), 'H:i:s d-m-Y') }}</td>
-											<td class="column-5"><a class="stext-101 cl2 hov-cl1 trans-04 m-tb-10" href="{{ route('history.detail', ['id' => $order->id]) }}">Detail</a></td>
+											<td class="column-5"><a class="stext-101 cl2 hov-cl1 trans-04 m-tb-10" href="{{ route('history.detail', ['id' => $order->id]) }}">Chi tiết</a></td>
 										</tr>
                                     @endforeach
 								@else
 										<tr class="table_row">
-											<th	colspan="6" class="text-center">No order</th>
+											<th	colspan="6" class="text-center">Không có đơn hàng nào</th>
 										</tr>
                                 @endif
                                 

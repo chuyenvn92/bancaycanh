@@ -30,7 +30,7 @@
                                 <th>{!! $product->description !!}</th>
                                 <th>{{ $product->discount }} %</th>
                                 <th>
-                                    {{-- <table class="table">
+                                    <table class="table">
                                         <tbody>
                                             @foreach ($product->attributes as $attribute)
                                                 <tr>
@@ -41,7 +41,7 @@
                                             @endforeach
                                         
                                         </tbody>
-                                    </table> --}}
+                                    </table>
                                 </th>
                                 
                                 {{-- <td>
