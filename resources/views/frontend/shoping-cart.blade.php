@@ -64,7 +64,7 @@
 									@endforeach
 								@else
 										<tr class="table_row">
-											<th	colspan="6" class="text-center">No products</th>
+											<th	colspan="6" class="text-center">Không có sản phẩm nào</th>
 										</tr>
 								@endif
 							</table>
@@ -74,7 +74,7 @@
 							<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 								<div class="flex-w flex-m m-r-20 m-tb-5">		
 									<button type="submit" class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-										Update Cart
+										Cập nhật giỏ hàng
 									</button>
 								</div>
 							</div>
@@ -86,13 +86,13 @@
 					<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 						<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 							<h4 class="mtext-109 cl2 p-b-30">
-								Cart Totals
+								THÀNH TIỀN
 							</h4>
 		
 							<div class="flex-w flex-t p-t-27 p-b-33">
 								<div class="size-208">
 									<span class="mtext-101 cl2">
-										Total:
+										TỔNG
 									</span>
 								</div>
 
@@ -106,7 +106,7 @@
 							<form action="{{ route('order.checkout') }}" method="post">
 								@csrf						
 								<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-									Proceed to Checkout
+									Đặt hàng
 								</button>
 							</form>
 						</div>

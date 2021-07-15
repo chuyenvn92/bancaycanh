@@ -39,8 +39,11 @@ class CartController extends Controller
     {
         $product_id = $request->product_id;
         $product = Product::find($id);
+
+        $size = $request->size;
+        $color = $request->color;
         $qty = $request->qty;
-        Cart::add($product->image, $product->name, $size, $qty);
+        Cart::add($product->image, $product->name, $size, $color, $qty);
         Session::flash('success', 'Thêm vào giỏ hàng thành công!');
         return redirect()->back();
     }
