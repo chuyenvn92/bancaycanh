@@ -686,6 +686,26 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   margin: auto;
 }
 
+.logo-mobile-1 {
+  display: block;
+  /* position: relative; */
+  height: 80%;
+  padding-right: 25px;
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.logo-mobile-1 img {
+  max-width: calc(100% - 20px);
+  max-height: 100%;
+  position:absolute;
+  top: 0; 
+  left: 0; 
+  bottom: 0;
+  margin: auto;
+}
+
 
 
 /*------------------------------------------------------------------

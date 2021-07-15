@@ -102,7 +102,7 @@
 
 						<div class="p-t-55">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Categories
+								Chuyên mục
 							</h4>
 
 							<ul>

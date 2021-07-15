@@ -56,7 +56,7 @@
                         </li >
 
                         <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
-                            <a href="{{ route('blog') }}">Tin tức</a>
+                            <a href="{{ route('blog') }}">Blog</a>
                         </li>
 
                         <li class="{{ Route::is('about') ? 'active-menu' : '' }}">

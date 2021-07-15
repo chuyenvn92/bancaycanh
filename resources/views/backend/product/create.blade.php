@@ -99,20 +99,6 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="qty" class="col-md-2 col-form-label text-md-right">{{ __('Số lượng') }}</label>
-
-                        <div class="col-md-9">
-                            <input  min="1" id="qty" type="number" class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" value="{{ old('qty') }}" required autofocus>
-                            
-                            @if ($errors->has('qty'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('qty') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label for="tag" class="col-md-2 col-form-label text-md-right">{{ __('Tags') }}</label>
 
                         <div class="col-md-9">
@@ -141,7 +127,6 @@
                         </div>
                     </div>
 
-<<<<<<< HEAD
                     <div class="form-group row">
                         <label for="attribute" class="col-md-2 col-form-label text-md-right">{{ __('Thêm thuộc tính') }}</label>
 
@@ -177,8 +162,6 @@
                         </div>
                     </div>
 
-=======
->>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
                     <div class="form-group row mb-0">
                         <div class="col-md-9 offset-md-2">
                             <button type="submit" class="btn btn-primary">
@@ -208,7 +191,6 @@
     <script>
         $(document).ready(function(){
             var maxField = 10; //Input fields increment limitation
-<<<<<<< HEAD
             var fieldHTML = '<div class="row">';
             fieldHTML+= '<div class="col-md-3 mb-3">';
             fieldHTML+= '<select class="form-control" name="sizes[]" required>';
@@ -226,9 +208,6 @@
             fieldHTML+= '</select>';
             fieldHTML+= '</div>';
     
-=======
-            var fieldHTML = '<div class="row">';   
->>>>>>> 01d1ea26e24563b26068354449af829fb2eb3a9e
             fieldHTML+= '<div class="col-md-3">'
             fieldHTML+=   '<input required class="form-control" type="number" name="qtys[]" min="1" placeholder="Số lượng"/>';
             fieldHTML+= '</div>';
