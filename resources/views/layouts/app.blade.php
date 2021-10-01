@@ -120,6 +120,21 @@
 
                         <div class="card border-primary">
                             <div class="card-header border-primary">
+                               Thống kê
+                            </div>
+
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="{{ route('dashboad.index') }}">Doanh thu ngày</a></li>
+                                    <li class="list-group-item"><a href="{{ route('productcategories.index') }}">Doanh thu tháng</a></li>
+                                    <li class="list-group-item"><a href="{{ route('productcategories.index') }}">Doanh thu năm</a></li>                                   
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="card border-primary">
+                            <div class="card-header border-primary">
                                 Bài viết
                             </div>
 

@@ -52,7 +52,7 @@
 								<img src="{{ asset('uploads/products/'.json_decode($product->image, True)[0]['name']) }}" alt="IMG-PRODUCT">
 								{{-- // . json_decode($product->image, True)[0]['name'] --}}
 								<a href="{{ route('product.detail', ['slug' => $product->slug]) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-									View detail
+									Xem chi tiết
 								</a>
 							</div>
 							{{-- js-show-modal1 --}}

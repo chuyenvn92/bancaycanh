@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Danh sách sảnp phẩm</div>
+        <div class="card-header">Danh sách sản phẩm</div>
     
         <div class="card-body">
             <a style="margin-bottom:20px;" class="btn btn-primary" href="{{ route('products.create') }}"><span class="fa fa-plus"></span>&nbsp;&nbsp;Thêm sản phẩm</a>
