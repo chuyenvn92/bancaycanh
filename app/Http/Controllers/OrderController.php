@@ -105,4 +105,22 @@ class OrderController extends Controller
         
         return redirect()->route('orders.index');
     }
+
+    public function filterOrderByDate(Request $request)
+    {
+        if($request->date_from && $request->date_to){
+            $date_from = date('Y-m-d', strtotime($request->date_from));
+            $date_to = date('Y-m-d', strtotime($request->date_to));
+            $total = Order::where('status', 2) ->whereBetween('created_at',[$date_from,$date_to])->sum('total_price');
+    		$orders = Order::where('status', 2)
+                                ->whereBetween('created_at',[$date_from,$date_to])
+                                ->paginate(10);                                
+    		return view('backend.report.date',compact('orders', 'date_from', 'date_to', 'total'));
+    	}
+        $orders = Order::where('status', 2)
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
+        $total = Order::where('status', 2)->sum('total_price');
+        return view('backend.report.date',compact('orders','total'));
+    }
 }

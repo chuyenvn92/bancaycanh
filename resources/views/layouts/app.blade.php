@@ -125,9 +125,7 @@
 
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="{{ route('dashboad.index') }}">Doanh thu ngày</a></li>
-                                    <li class="list-group-item"><a href="{{ route('productcategories.index') }}">Doanh thu tháng</a></li>
-                                    <li class="list-group-item"><a href="{{ route('productcategories.index') }}">Doanh thu năm</a></li>                                   
+                                    <li class="list-group-item"><a href="{{ route('report.date') }}">Thống kê</a></li>                                 
                                 </ul>
                             </div>
                         </div>

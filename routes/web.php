@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         'sizes' => 'SizeController',
         'colors' => 'ColorController'
     ]);
+    Route::get('/report/date','OrderController@filterOrderByDate')->name('report.date');
 });
 
 Route::get('/user/login', 'FrontendController@showLoginForm')->name('user.login');
